@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import FilmCard from '../../components/film-card';
 
 type WelcomeScreenProps = {
@@ -66,7 +67,7 @@ function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <a href="#" className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>
