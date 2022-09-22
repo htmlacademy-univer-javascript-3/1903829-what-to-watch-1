@@ -8,6 +8,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <App title = { 'Title' } genre = { 'Genre' } year={ 0 } />
   </React.StrictMode>,
 );
