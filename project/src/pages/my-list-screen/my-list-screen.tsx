@@ -1,4 +1,4 @@
-import FilmCard from '../../components/film-card';
+import FilmCard from '../../components/film-card/film-card';
 
 function MyList(): JSX.Element {
   return (
@@ -50,7 +50,7 @@ function MyList(): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href="#" className="user-block__link">Sign out</a>
+              <a href="#todo" className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>
