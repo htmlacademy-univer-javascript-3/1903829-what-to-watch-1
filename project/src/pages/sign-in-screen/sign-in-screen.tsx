@@ -44,4 +44,4 @@ function SignIn(): JSX.Element {
   );
 }
 
-export default SignIn();
+export default SignIn;

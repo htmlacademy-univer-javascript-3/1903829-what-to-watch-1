@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import SignIn from '../../pages/sign-in-screen/sign-in-screen';
 import MyList from '../../pages/my-list-screen/my-list-screen';
 import Film from '../../pages/movie-page-screen/movie-page-screen';
 import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
+import Error from '../error/error';
+import PrivateRoute from '../../components/private-route/private-route';
 
 type filmInfo = {
   title: string,
@@ -27,7 +29,13 @@ function App(filmInfoProps: filmInfo): JSX.Element {
         </Route>
         <Route>
           path = { AppRoute.MyList }
-          element = { <MyList />}
+          element={
+            <PrivateRoute
+              authorizationStatus = {AuthorizationStatus.NoAuth}
+            >
+              <MyList />
+            </PrivateRoute>
+          }
         </Route>
         <Route>
           path = { AppRoute.Film }
@@ -40,6 +48,10 @@ function App(filmInfoProps: filmInfo): JSX.Element {
         <Route>
           path = { AppRoute.Player }
           element = { <Player /> }
+        </Route>
+        <Route>
+          path = { '*' }
+          element = { <Error /> }
         </Route>
       </Routes>
     </BrowserRouter>

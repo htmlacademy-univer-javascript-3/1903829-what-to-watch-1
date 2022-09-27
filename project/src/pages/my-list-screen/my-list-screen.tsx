@@ -53,4 +53,4 @@ function MyList(): JSX.Element {
   );
 }
 
-export default MyList();
+export default MyList;

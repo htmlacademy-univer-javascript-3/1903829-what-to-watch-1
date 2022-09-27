@@ -128,4 +128,4 @@ function MoviePage(): JSX.Element {
   );
 }
 
-export default MoviePage();
+export default MoviePage;
