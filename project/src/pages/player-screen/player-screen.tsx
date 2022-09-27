@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 function Player(): JSX.Element {
   return (
     <>

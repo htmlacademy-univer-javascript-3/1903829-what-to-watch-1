@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 function AddReviewScreen(): JSX.Element {
   return (
     <>
