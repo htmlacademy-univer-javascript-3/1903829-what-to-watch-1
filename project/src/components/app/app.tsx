@@ -1,4 +1,13 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
+import SignIn from '../../pages/sign-in-screen/sign-in-screen';
+import MyList from '../../pages/my-list-screen/my-list-screen';
+import Film from '../../pages/movie-page-screen/movie-page-screen';
+import AddReview from '../../pages/add-review-screen/add-review-screen';
+import Player from '../../pages/player-screen/player-screen';
+import Error from '../error/error';
+import PrivateRoute from '../../components/private-route/private-route';
 
 type filmInfo = {
   title: string,
@@ -8,7 +17,44 @@ type filmInfo = {
 
 function App(filmInfoProps: filmInfo): JSX.Element {
   return (
-    <WelcomeScreen filmInfo={ filmInfoProps } />
+    <BrowserRouter>
+      <Routes>
+        <Route>
+          path = { AppRoute.Main }
+          element = { <WelcomeScreen filmInfo = { filmInfoProps }/> }
+        </Route>
+        <Route>
+          path = { AppRoute.SignIn }
+          element = { <SignIn /> }
+        </Route>
+        <Route>
+          path = { AppRoute.MyList }
+          element={
+            <PrivateRoute
+              authorizationStatus = {AuthorizationStatus.NoAuth}
+            >
+              <MyList />
+            </PrivateRoute>
+          }
+        </Route>
+        <Route>
+          path = { AppRoute.Film }
+          element = { <Film />}
+        </Route>
+        <Route>
+          path = { AppRoute.AddReview }
+          element = { <AddReview />}
+        </Route>
+        <Route>
+          path = { AppRoute.Player }
+          element = { <Player /> }
+        </Route>
+        <Route>
+          path = { '*' }
+          element = { <Error /> }
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
