@@ -8,13 +8,15 @@ import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
 import Error from '../error/error';
 import PrivateRoute from '../../components/private-route/private-route';
-import { TypeFilm } from '../../types/film';
+import { TypeFilm } from '../../types/film-type';
+import { TypeGenres } from '../../types/genre-type';
 
 type filmInfo = {
   title: string,
   genre: string;
   year: number;
   films: TypeFilm[];
+  genres: TypeGenres[];
 }
 
 function App(filmInfoProps: filmInfo): JSX.Element {

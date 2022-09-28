@@ -1,7 +1,7 @@
 import Logo from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
-import Genre from '../../components/genre/genre';
-import { TypeFilm } from '../../types/film';
+import MovieList from '../../components/movie-list/movie-list';
+import { TypeFilm } from '../../types/film-type';
+import { TypeGenres } from '../../types/genre-type';
 
 type WelcomeScreenProps = {
   filmInfo: {
@@ -9,6 +9,7 @@ type WelcomeScreenProps = {
     genre: string,
     year: number,
     films: TypeFilm[],
+    genres: TypeGenres[],
   }
 }
 
@@ -71,40 +72,7 @@ function WelcomeScreen({ filmInfo }: WelcomeScreenProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#todo"className="catalog__genres-link">All genres</a>
-            </li>
-            <Genre />
-            <Genre />
-            <Genre />
-            <Genre />
-            <Genre />
-            <Genre />
-            <Genre />
-            <Genre />
-            <Genre />
-          </ul>
-
-          <div className="catalog__films-list">
-            { filmInfo.films.map((film) => <FilmCard key={ film.id } name={film.name } previewImage={ film.previewImage }/>) }
-            {/* <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard /> */}
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
-        </section>
+        <MovieList films={ filmInfo.films } genres={ filmInfo.genres }/>
 
         <footer className="page-footer">
           <div className="logo">

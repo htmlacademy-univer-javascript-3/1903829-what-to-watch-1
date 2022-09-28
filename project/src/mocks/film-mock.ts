@@ -1,4 +1,4 @@
-import { TypeFilm } from '../types/film';
+import { TypeFilm } from '../types/film-type';
 
 export const filmsList: TypeFilm[] = [
   {
