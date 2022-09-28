@@ -19,15 +19,15 @@ function App(filmInfoProps: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route>
+        <Route
           path = { AppRoute.Main }
           element = { <WelcomeScreen filmInfo = { filmInfoProps }/> }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.SignIn }
           element = { <SignIn /> }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.MyList }
           element={
             <PrivateRoute
@@ -36,23 +36,23 @@ function App(filmInfoProps: filmInfo): JSX.Element {
               <MyList />
             </PrivateRoute>
           }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.Film }
           element = { <Film />}
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.AddReview }
           element = { <AddReview />}
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.Player }
           element = { <Player /> }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { '*' }
           element = { <Error /> }
-        </Route>
+        />
       </Routes>
     </BrowserRouter>
   );
