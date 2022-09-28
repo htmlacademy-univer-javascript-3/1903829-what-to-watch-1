@@ -1,16 +1,18 @@
 import Logo from '../../components/logo/logo';
 import FilmCard from '../../components/film-card/film-card';
 import Genre from '../../components/genre/genre';
+import { TypeFilm } from '../../types/film';
 
 type WelcomeScreenProps = {
   filmInfo: {
     title: string,
     genre: string,
     year: number,
+    films: TypeFilm[],
   }
 }
 
-function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
+function WelcomeScreen({ filmInfo }: WelcomeScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -42,10 +44,10 @@ function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{ props.filmInfo.title }</h2>
+              <h2 className="film-card__title">{ filmInfo.title }</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{ props.filmInfo.genre }</span>
-                <span className="film-card__year">{ props.filmInfo.year }</span>
+                <span className="film-card__genre">{ filmInfo.genre }</span>
+                <span className="film-card__year">{ filmInfo.year }</span>
               </p>
 
               <div className="film-card__buttons">
@@ -88,26 +90,15 @@ function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
+            { filmInfo.films.map((film) => <FilmCard key={ film.id } name={film.name } previewImage={ film.previewImage }/>) }
+            {/* <FilmCard />
             <FilmCard />
             <FilmCard />
             <FilmCard />
             <FilmCard />
             <FilmCard />
             <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
+            <FilmCard /> */}
           </div>
 
           <div className="catalog__more">

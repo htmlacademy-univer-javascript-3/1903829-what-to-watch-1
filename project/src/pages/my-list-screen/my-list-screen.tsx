@@ -1,5 +1,5 @@
 import Logo from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
+//import FilmCard from '../../components/film-card/film-card';
 
 function MyList(): JSX.Element {
   return (
@@ -24,6 +24,7 @@ function MyList(): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
+          {/* <FilmCard />
           <FilmCard />
           <FilmCard />
           <FilmCard />
@@ -31,8 +32,7 @@ function MyList(): JSX.Element {
           <FilmCard />
           <FilmCard />
           <FilmCard />
-          <FilmCard />
-          <FilmCard />
+          <FilmCard /> */}
         </div>
       </section>
 

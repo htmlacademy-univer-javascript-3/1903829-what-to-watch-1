@@ -1,5 +1,5 @@
 import Logo from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
+//import FilmCard from '../../components/film-card/film-card';
 
 function MoviePage(): JSX.Element {
   return (
@@ -103,10 +103,10 @@ function MoviePage(): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
+            {/* <FilmCard />
             <FilmCard />
             <FilmCard />
-            <FilmCard />
-            <FilmCard />
+            <FilmCard /> */}
           </div>
         </section>
 
