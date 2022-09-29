@@ -19,13 +19,13 @@ type filmInfo = {
   genres: TypeGenres[];
 }
 
-function App(filmInfoProps: filmInfo): JSX.Element {
+function App({ title, genre, year, films, genres }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path = { AppRoute.Main }
-          element = { <WelcomeScreen filmInfo = { filmInfoProps }/> }
+          element = { <WelcomeScreen title={ title } genre={ genre } year={ year } films={ films } genres={ genres }/> }
         />
         <Route
           path = { AppRoute.SignIn }

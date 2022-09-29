@@ -10,7 +10,7 @@ type MovieListProps = {
 }
 
 function MovieList({ films, genres }: MovieListProps): JSX.Element {
-  const [userCard, setUserCard] = useState(0);
+  const [/*userCard*/, setUserCard] = useState(0);
 
   return (
     <section className="catalog">
