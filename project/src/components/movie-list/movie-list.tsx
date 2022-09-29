@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TypeFilm } from '../../types/film-type';
 import FilmCard from '../film-card/film-card';
 import { TypeGenres } from '../../types/genre-type';
@@ -9,6 +10,8 @@ type MovieListProps = {
 }
 
 function MovieList({ films, genres }: MovieListProps): JSX.Element {
+  const [userCard, setUserCard] = useState(0);
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -21,7 +24,8 @@ function MovieList({ films, genres }: MovieListProps): JSX.Element {
       </ul>
 
       <div className="catalog__films-list">
-        { films.map((film) => <FilmCard key={ film.id } name={film.name } previewImage={ film.previewImage }/>) }
+        { films.map((film) => (
+          <FilmCard key={ film.id } id={ film.id } name={film.name } previewImage={ film.previewImage }/>)) }
       </div>
 
       <div className="catalog__more">
