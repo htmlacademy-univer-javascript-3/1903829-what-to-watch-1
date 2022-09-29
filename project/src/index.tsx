@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { filmsList } from './mocks/film-mock';
 import { GenresList } from './const';
+import { filmsList } from './mocks/film-mock';
+import { favoriteFilmMock } from './mocks/favorite-film-mock';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,6 +17,7 @@ root.render(
       year = { 0 }
       films = { filmsList }
       genres = { GenresList }
+      favouriteList = { favoriteFilmMock }
     />
   </React.StrictMode>,
 );

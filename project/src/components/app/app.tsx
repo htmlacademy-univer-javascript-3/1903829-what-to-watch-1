@@ -10,6 +10,7 @@ import Error from '../error/error';
 import PrivateRoute from '../../components/private-route/private-route';
 import { TypeFilm } from '../../types/film-type';
 import { TypeGenres } from '../../types/genre-type';
+import { FavoriteFilms } from '../../types/favorite-films';
 
 type filmInfo = {
   title: string,
@@ -17,9 +18,10 @@ type filmInfo = {
   year: number;
   films: TypeFilm[];
   genres: TypeGenres[];
+  favouriteList: FavoriteFilms[],
 }
 
-function App({ title, genre, year, films, genres }: filmInfo): JSX.Element {
+function App({ title, genre, year, films, genres, favouriteList }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -35,15 +37,15 @@ function App({ title, genre, year, films, genres }: filmInfo): JSX.Element {
           path = { AppRoute.MyList }
           element={
             <PrivateRoute
-              authorizationStatus = {AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <MyList />
+              <MyList myList={ favouriteList }/>
             </PrivateRoute>
           }
         />
         <Route
           path = { AppRoute.Film }
-          element = { <Film />}
+          element = { <Film /> }
         />
         <Route
           path = { AppRoute.AddReview }
