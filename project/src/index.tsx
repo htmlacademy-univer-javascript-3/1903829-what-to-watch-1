@@ -18,6 +18,7 @@ root.render(
       films = { filmsList }
       genres = { GenresList }
       favouriteList = { favoriteFilmMock }
+      id = { 1 }
     />
   </React.StrictMode>,
 );

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { MouseEvent } from 'react';
 
 type FilmCardType = {
@@ -14,7 +15,7 @@ function FilmCard({ id, name, previewImage, mouseOverHandler }: FilmCardType): J
         <img src={ previewImage } alt={ name } width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{ name }</a>
+        <Link className="small-film-card__link" to={`/films/${ id }`}>{ name }</Link>
       </h3>
     </article>
   );

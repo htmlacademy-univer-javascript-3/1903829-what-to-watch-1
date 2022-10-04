@@ -14,14 +14,15 @@ import { FavoriteFilms } from '../../types/favorite-films';
 
 type filmInfo = {
   title: string,
-  genre: string;
-  year: number;
-  films: TypeFilm[];
-  genres: TypeGenres[];
+  id: number,
+  genre: string,
+  year: number,
+  films: TypeFilm[],
+  genres: TypeGenres[],
   favouriteList: FavoriteFilms[],
 }
 
-function App({ title, genre, year, films, genres, favouriteList }: filmInfo): JSX.Element {
+function App({ title, id, genre, year, films, genres, favouriteList }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -45,7 +46,7 @@ function App({ title, genre, year, films, genres, favouriteList }: filmInfo): JS
         />
         <Route
           path = { AppRoute.Film }
-          element = { <Film /> }
+          element = { <Film id={ id }/> }
         />
         <Route
           path = { AppRoute.AddReview }
