@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { GenresList } from './const';
-import { filmsList } from './mocks/film-mock';
+import { filmsList } from './mocks/films-mock';
 import { favoriteFilmMock } from './mocks/favorite-film-mock';
 
 const root = ReactDOM.createRoot(

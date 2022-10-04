@@ -46,7 +46,7 @@ function App({ title, id, genre, year, films, genres, favouriteList }: filmInfo)
         />
         <Route
           path = { AppRoute.Film }
-          element = { <Film id={ id }/> }
+          element = { <Film films={ films }/> }
         />
         <Route
           path = { AppRoute.AddReview }
