@@ -11,6 +11,7 @@ import PrivateRoute from '../../components/private-route/private-route';
 import { TypeFilm } from '../../types/film-type';
 import { TypeGenres } from '../../types/genre-type';
 import { FavoriteFilms } from '../../types/favorite-films';
+import Reviews from '../../types/reviews';
 
 type filmInfo = {
   title: string,
@@ -20,9 +21,10 @@ type filmInfo = {
   films: TypeFilm[],
   genres: TypeGenres[],
   favouriteList: FavoriteFilms[],
+  mocks: Reviews;
 }
 
-function App({ title, id, genre, year, films, genres, favouriteList }: filmInfo): JSX.Element {
+function App({ title, id, genre, year, films, genres, favouriteList, mocks }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -46,7 +48,7 @@ function App({ title, id, genre, year, films, genres, favouriteList }: filmInfo)
         />
         <Route
           path = { AppRoute.Film }
-          element = { <Film films={ films }/> }
+          element = { <Film films={ films } mocks={ mocks }/> }
         />
         <Route
           path = { AppRoute.AddReview }

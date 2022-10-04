@@ -1,17 +1,19 @@
 import { MouseEvent, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TypeFilm } from '../../types/film-type';
+import Reviews from '../../types/reviews';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import MoviePageComponent from '../../components/movie-page-component/movie-page-component';
 import FilmCard from '../../components/film-card/film-card';
 import AddDetails from '../../components/details-component/details-component';
-import Reviews from '../../components/reviews/reviews';
+import ReviewsComponent from '../../components/reviews/reviews';
 
 type MoviePageScreenProps = {
   films: TypeFilm[];
+  mocks: Reviews;
 }
 
-function MoviePage({ films }: MoviePageScreenProps): JSX.Element {
+function MoviePage({ films, mocks }: MoviePageScreenProps): JSX.Element {
   const [/*userCard*/, setUserCard] = useState(0);
 
   const id = Number(useParams().id);
@@ -100,7 +102,7 @@ function MoviePage({ films }: MoviePageScreenProps): JSX.Element {
                 runTime={ film?.runTime }
               />
 
-              <Reviews />
+              <ReviewsComponent mocks={ mocks }/>
             </div>
           </div>
         </div>
