@@ -15,7 +15,6 @@ import Reviews from '../../types/reviews';
 
 type filmInfo = {
   title: string,
-  id: number,
   genre: string,
   year: number,
   films: TypeFilm[],
@@ -24,7 +23,7 @@ type filmInfo = {
   mocks: Reviews;
 }
 
-function App({ title, id, genre, year, films, genres, favouriteList, mocks }: filmInfo): JSX.Element {
+function App({ title, genre, year, films, genres, favouriteList, mocks }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
