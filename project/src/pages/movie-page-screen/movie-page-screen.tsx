@@ -4,6 +4,8 @@ import { TypeFilm } from '../../types/film-type';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import MoviePageComponent from '../../components/movie-page-component/movie-page-component';
 import FilmCard from '../../components/film-card/film-card';
+import AddDetails from '../../components/details-component/details-component';
+import Reviews from '../../components/reviews/reviews';
 
 type MoviePageScreenProps = {
   films: TypeFilm[];
@@ -53,7 +55,7 @@ function MoviePage({ films }: MoviePageScreenProps): JSX.Element {
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
-                  <span>Play</span>
+                  <Link to={`/player/:${ id }`}><span>Play</span></Link>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
@@ -90,12 +92,15 @@ function MoviePage({ films }: MoviePageScreenProps): JSX.Element {
               </nav>
 
               <MoviePageComponent
-                rating={ film?.rating }
-                description={ film?.description }
-                scoresCount={ film?.scoresCount }
-                director={ film?.director }
-                starring={ film?.starring }
+                rating={ film?.rating } description={ film?.description } scoresCount={ film?.scoresCount }
+                director={ film?.director } starring={ film?.starring }
               />
+
+              <AddDetails director={ film?.director } starring={ film?.starring } released={ film?.released } genre={ film?.genre }
+                runTime={ film?.runTime }
+              />
+
+              <Reviews />
             </div>
           </div>
         </div>
