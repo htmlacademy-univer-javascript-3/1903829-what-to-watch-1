@@ -8,51 +8,59 @@ import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
 import Error from '../error/error';
 import PrivateRoute from '../../components/private-route/private-route';
+import { TypeFilm } from '../../types/film-type';
+import { TypeGenres } from '../../types/genre-type';
+import { FavoriteFilms } from '../../types/favorite-films';
+import Reviews from '../../types/reviews';
 
 type filmInfo = {
   title: string,
-  genre: string;
-  year: number;
+  genre: string,
+  year: number,
+  films: TypeFilm[],
+  genres: TypeGenres[],
+  favouriteList: FavoriteFilms[],
+  mocks: Reviews;
 }
 
-function App(filmInfoProps: filmInfo): JSX.Element {
+function App({ title, genre, year, films, genres, favouriteList, mocks }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route>
+        <Route
           path = { AppRoute.Main }
-          element = { <WelcomeScreen filmInfo = { filmInfoProps }/> }
-        </Route>
-        <Route>
+          element = { <WelcomeScreen title={ title } genre={ genre } year={ year } films={ films } genres={ genres }/> }
+        />
+        <Route
           path = { AppRoute.SignIn }
           element = { <SignIn /> }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.MyList }
           element={
             <PrivateRoute
-              authorizationStatus = {AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <MyList />
+              <MyList myList={ favouriteList }/>
             </PrivateRoute>
           }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.Film }
-          element = { <Film />}
-        </Route>
-        <Route>
+          element = { <Film films={ films } mocks={ mocks }/> }
+        />
+        <Route
           path = { AppRoute.AddReview }
           element = { <AddReview />}
-        </Route>
-        <Route>
+        />
+        <Route
           path = { AppRoute.Player }
           element = { <Player /> }
-        </Route>
-        <Route>
+        />
+        <Route
           path = { '*' }
           element = { <Error /> }
-        </Route>
+        />
       </Routes>
     </BrowserRouter>
   );

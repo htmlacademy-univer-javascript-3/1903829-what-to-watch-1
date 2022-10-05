@@ -1,7 +1,12 @@
-import Logo from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
+import { Logo, LogoLight } from '../../components/logo/logo';
+import { FavoriteFilms } from '../../types/favorite-films';
+import FilmCardFavourite from '../../components/favourite-film-card/favourite-film-card';
 
-function MyList(): JSX.Element {
+type MyListProps = {
+  myList: FavoriteFilms[],
+}
+
+function MyList({ myList }: MyListProps): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -24,26 +29,12 @@ function MyList(): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
-          <FilmCard />
+          { myList.map((film) => <FilmCardFavourite key={ film.id } name={ film.name } previewImage={ film.previewImage }/>) }
         </div>
       </section>
 
       <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <LogoLight />
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
