@@ -22,7 +22,7 @@ function AddReviewComponent(): JSX.Element {
           <div className="rating__stars">
             {
               [10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((i) => (
-                <StarComponent key={ i } n={ i } changeRatingArea={ changeRatingArea } />
+                <StarComponent key={ String(i) } n={ i } changeRatingArea={ changeRatingArea } />
               ) )
             }
           </div>

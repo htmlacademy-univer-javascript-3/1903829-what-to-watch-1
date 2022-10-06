@@ -1,12 +1,12 @@
 type AddDetailsProps = {
-  director: string | undefined;
-  starring: string[] | undefined;
-  genre: string | undefined;
-  released: number | undefined;
-  runTime: number | undefined;
+  director?: string;
+  starring?: string[];
+  genre?: string;
+  released?: number;
+  runTime?: number;
 }
 
-function ConvertTime(timeInMinutes: number): string {
+function convertTime(timeInMinutes: number): string {
   const hours = parseInt(String((timeInMinutes) / 60), 10);
   const minutes = timeInMinutes - hours * 60;
   const parseHours = `${hours.toString()}h`;
@@ -36,7 +36,7 @@ function AddDetails({ director, starring, genre, released, runTime }: AddDetails
         <div className="film-card__text-col">
           <p className="film-card__details-item">
             <strong className="film-card__details-name">Run Time</strong>
-            <span className="film-card__details-value">{ ConvertTime(runTime) }</span>
+            <span className="film-card__details-value">{ convertTime(runTime) }</span>
           </p>
           <p className="film-card__details-item">
             <strong className="film-card__details-name">Genre</strong>

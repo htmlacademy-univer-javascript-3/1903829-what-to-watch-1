@@ -5,12 +5,13 @@ type FilmCardType = {
   id: number;
   name: string;
   previewImage: string;
-  mouseOverHandler: (evt: MouseEvent<HTMLDivElement>) => void;
+  onMouseOver: (evt: MouseEvent<HTMLDivElement>) => void;
+  activeCard: boolean;
 }
 
-function FilmCard({ id, name, previewImage, mouseOverHandler }: FilmCardType): JSX.Element {
+function FilmCard({ id, name, previewImage, onMouseOver, activeCard }: FilmCardType): JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card" onMouseOver={ mouseOverHandler }>
+    <article className="small-film-card catalog__films-card" onMouseOver={ onMouseOver }>
       <div className="small-film-card__image">
         <img src={ previewImage } alt={ name } width="280" height="175" />
       </div>
