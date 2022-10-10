@@ -1,11 +1,11 @@
 import { ChooseRatingLevel } from '../../utils/functions';
 
 type MoviePageProps = {
-  rating: number | undefined;
-  description: string | undefined;
-  scoresCount: number | undefined;
-  director: string | undefined;
-  starring: string[] | undefined;
+  rating?: number;
+  description?: string;
+  scoresCount?: number;
+  director?: string;
+  starring?: string[];
 }
 
 function MoviePageComponent({ rating, description, scoresCount, director, starring }: MoviePageProps): JSX.Element {

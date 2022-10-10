@@ -1,4 +1,4 @@
-export function ChooseRatingLevel(rating: number | undefined): string {
+export function ChooseRatingLevel(rating?: number): string {
   if (rating !== undefined) {
     if (rating >= 0 && rating < 3) {
       return 'Bad';

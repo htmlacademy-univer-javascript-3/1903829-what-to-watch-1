@@ -20,10 +20,10 @@ type filmInfo = {
   films: TypeFilm[],
   genres: TypeGenres[],
   favouriteList: FavoriteFilms[],
-  mocks: Reviews;
+  reviews: Reviews;
 }
 
-function App({ title, genre, year, films, genres, favouriteList, mocks }: filmInfo): JSX.Element {
+function App({ title, genre, year, films, genres, favouriteList, reviews }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -47,7 +47,7 @@ function App({ title, genre, year, films, genres, favouriteList, mocks }: filmIn
         />
         <Route
           path = { AppRoute.Film }
-          element = { <Film films={ films } mocks={ mocks }/> }
+          element = { <Film films={ films } reviews={ reviews }/> }
         />
         <Route
           path = { AppRoute.AddReview }

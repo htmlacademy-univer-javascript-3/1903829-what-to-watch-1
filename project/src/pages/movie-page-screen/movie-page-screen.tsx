@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TypeFilm } from '../../types/film-type';
 import Reviews from '../../types/reviews';
@@ -10,11 +10,11 @@ import ReviewsComponent from '../../components/reviews/reviews';
 
 type MoviePageScreenProps = {
   films: TypeFilm[];
-  mocks: Reviews;
+  reviews: Reviews;
 }
 
-function MoviePage({ films, mocks }: MoviePageScreenProps): JSX.Element {
-  const [/*userCard*/, setUserCard] = useState(0);
+function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
+  const [userCard, setUserCard] = useState(0);
 
   const id = Number(useParams().id);
   const film = films.find((x) => x.id === id);
@@ -57,7 +57,7 @@ function MoviePage({ films, mocks }: MoviePageScreenProps): JSX.Element {
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
-                  <Link to={`/player/:${ id }`}><span>Play</span></Link>
+                  <Link to={`/player/${ id }`}><span>Play</span></Link>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
@@ -102,7 +102,7 @@ function MoviePage({ films, mocks }: MoviePageScreenProps): JSX.Element {
                 runTime={ film?.runTime }
               />
 
-              <ReviewsComponent mocks={ mocks }/>
+              <ReviewsComponent reviews={ reviews }/>
             </div>
           </div>
         </div>
@@ -115,9 +115,8 @@ function MoviePage({ films, mocks }: MoviePageScreenProps): JSX.Element {
           <div className="catalog__films-list">
             { films.map((movie) => (
               <FilmCard
-                key={ movie.id } id={ movie.id } name={movie.name } previewImage={ movie.previewImage }
-                mouseOverHandler={ (evt: MouseEvent<HTMLDivElement>) => {
-                  evt.preventDefault();
+                key={ movie.id } id={ movie.id } name={movie.name } previewImage={ movie.previewImage } activeCard={ movie.id === userCard }
+                srcVideo={ movie.previewVideoLink } onMouseOver={ () => {
                   setUserCard(movie.id);
                 } }
               />)

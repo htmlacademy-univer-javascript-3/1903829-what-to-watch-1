@@ -15,7 +15,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const GenresList: TypeGenres[] = [
+export const GENRES_LIST: TypeGenres[] = [
   {
     titleGenre: 'Comedies',
     id: 1,
