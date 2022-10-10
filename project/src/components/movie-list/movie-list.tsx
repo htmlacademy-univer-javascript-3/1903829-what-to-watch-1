@@ -27,7 +27,7 @@ function MovieList({ films, genres }: MovieListProps): JSX.Element {
         { films.map((film) => (
           <FilmCard
             key={ film.id } id={ film.id } name={film.name } previewImage={ film.previewImage } activeCard={ film.id === userCard }
-            onMouseOver={ (evt: MouseEvent<HTMLDivElement>) => {
+            srcVideo={ film.previewVideoLink } onMouseOver={ (evt: MouseEvent<HTMLDivElement>) => {
               evt.preventDefault();
               setUserCard(film.id);
             } }

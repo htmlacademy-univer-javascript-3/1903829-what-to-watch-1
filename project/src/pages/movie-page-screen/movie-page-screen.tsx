@@ -116,7 +116,7 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
             { films.map((movie) => (
               <FilmCard
                 key={ movie.id } id={ movie.id } name={movie.name } previewImage={ movie.previewImage } activeCard={ movie.id === userCard }
-                onMouseOver={ (evt: MouseEvent<HTMLDivElement>) => {
+                srcVideo={ movie.previewVideoLink } onMouseOver={ (evt: MouseEvent<HTMLDivElement>) => {
                   evt.preventDefault();
                   setUserCard(movie.id);
                 } }
