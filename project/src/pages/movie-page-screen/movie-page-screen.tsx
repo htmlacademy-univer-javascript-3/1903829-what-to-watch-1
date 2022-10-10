@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TypeFilm } from '../../types/film-type';
 import Reviews from '../../types/reviews';
@@ -116,8 +116,7 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
             { films.map((movie) => (
               <FilmCard
                 key={ movie.id } id={ movie.id } name={movie.name } previewImage={ movie.previewImage } activeCard={ movie.id === userCard }
-                srcVideo={ movie.previewVideoLink } onMouseOver={ (evt: MouseEvent<HTMLDivElement>) => {
-                  evt.preventDefault();
+                srcVideo={ movie.previewVideoLink } onMouseOver={ () => {
                   setUserCard(movie.id);
                 } }
               />)

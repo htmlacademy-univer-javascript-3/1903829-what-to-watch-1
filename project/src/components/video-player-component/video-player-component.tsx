@@ -2,9 +2,10 @@ import { useEffect, useRef } from 'react';
 
 type VideoPlayerProps = {
   src: string,
+  srcImage: string,
 }
 
-function VideoPlayerComponent({ src }: VideoPlayerProps): JSX.Element {
+function VideoPlayerComponent({ src, srcImage }: VideoPlayerProps): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(()=> {
@@ -18,7 +19,7 @@ function VideoPlayerComponent({ src }: VideoPlayerProps): JSX.Element {
   } );
 
   return (
-    <video ref={ videoRef } width="280" height="175">
+    <video ref={ videoRef } poster={ srcImage } width="280" height="175" muted>
       <source src={ src } type="video/mp4" />
     </video>
   );

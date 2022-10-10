@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import { TypeFilm } from '../../types/film-type';
 import FilmCard from '../film-card/film-card';
 import { TypeGenres } from '../../types/genre-type';
@@ -27,9 +27,8 @@ function MovieList({ films, genres }: MovieListProps): JSX.Element {
         { films.map((film) => (
           <FilmCard
             key={ film.id } id={ film.id } name={film.name } previewImage={ film.previewImage } activeCard={ film.id === userCard }
-            srcVideo={ film.previewVideoLink } onMouseOver={ (evt: MouseEvent<HTMLDivElement>) => {
-              evt.preventDefault();
-              setUserCard(film.id);
+            srcVideo={ film.previewVideoLink } onMouseOver={ (filmId: number) => {
+              setUserCard(filmId);
             } }
           />)
         ) }
