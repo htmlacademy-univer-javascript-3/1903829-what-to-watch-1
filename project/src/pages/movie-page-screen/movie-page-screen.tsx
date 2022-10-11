@@ -13,6 +13,7 @@ type MoviePageScreenProps = {
 
 function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
   const [userCard, setUserCard] = useState(0);
+  const [chooseTab, setChooseTab] = useState<string>('Overview');
 
   const id = Number(useParams().id);
   const film = films.find((x) => x.id === id);
@@ -76,7 +77,12 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
               <img src={ film?.posterImage } alt={ film?.name } width="218" height="327" />
             </div>
 
-            <TabsComponent film={ film } reviews={ reviews }/>
+            <TabsComponent
+              film={ film }
+              reviews={ reviews }
+              chooseTab={ chooseTab }
+              updateTab={ (tab: string) => { setChooseTab(tab);} }
+            />
 
           </div>
         </div>

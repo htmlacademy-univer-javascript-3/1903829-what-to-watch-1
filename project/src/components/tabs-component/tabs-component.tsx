@@ -6,36 +6,48 @@ import ReviewsComponent from '../reviews/reviews';
 
 
 type TabsComponentProps = {
-  film?: TypeFilm;
-  reviews: Reviews;
+  film?: TypeFilm,
+  reviews: Reviews,
+  chooseTab: string,
+  updateTab: (tab: string) => void,
 }
 
-function TabsComponent({ film, reviews }: TabsComponentProps): JSX.Element {
+function TabsComponent({ film, reviews, chooseTab, updateTab }: TabsComponentProps): JSX.Element {
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className="film-nav__item">
-            <a href="#todo" className="film-nav__link">Overview</a>
+          <li className={ `film-nav__item ${ chooseTab === 'Overview' && 'film-nav__item--active' }` }>
+            <a href="#todo" className="film-nav__link" onClick={ (evt) => { evt.preventDefault(); updateTab('Overview'); } }>
+              Overview
+            </a>
           </li>
-          <li className="film-nav__item film-nav__item--active">
-            <a href="#todo" className="film-nav__link">Details</a>
+          <li className={ `film-nav__item ${ chooseTab === 'Details' && 'film-nav__item--active' }` }>
+            <a href="#todo" className="film-nav__link" onClick={ (evt) => { evt.preventDefault(); updateTab('Details'); } }>
+              Details
+            </a>
           </li>
-          <li className="film-nav__item">
-            <a href="#todo" className="film-nav__link">Reviews</a>
+          <li className={ `film-nav__item ${ chooseTab === 'Reviews' && 'film-nav__item--active' }` }>
+            <a href="#todo" className="film-nav__link" onClick={ (evt) => { evt.preventDefault(); updateTab('Reviews'); } }>
+              Reviews
+            </a>
           </li>
         </ul>
       </nav>
 
-      <MoviePageComponent rating={ film?.rating } description={ film?.description } scoresCount={ film?.scoresCount }
-        director={ film?.director } starring={ film?.starring }
-      />
+      { chooseTab === 'Overview' &&
+        <MoviePageComponent rating={ film?.rating } description={ film?.description } scoresCount={ film?.scoresCount }
+          director={ film?.director } starring={ film?.starring }
+        /> }
 
-      <AddDetails director={ film?.director } starring={ film?.starring } released={ film?.released } genre={ film?.genre }
-        runTime={ film?.runTime }
-      />
+      { chooseTab === 'Details' &&
+        <AddDetails director={ film?.director } starring={ film?.starring } released={ film?.released } genre={ film?.genre }
+          runTime={ film?.runTime }
+        /> }
 
-      <ReviewsComponent reviews={ reviews }/>
+      { chooseTab === 'Reviews' &&
+        <ReviewsComponent reviews={ reviews }/> }
+
     </div>
   );
 }
