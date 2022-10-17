@@ -20,53 +20,11 @@ export enum GenresList {
   COMEDIES = 'Comedies',
   CRIME = 'Crime',
   DOCUMENTARY = 'Documentary',
-  DRAMA = 'Drama',
+  DRAMAS = 'Dramas',
   HORROR = 'Horror',
   KIDS_FAMILY = 'Kids & Family',
   ROMANCE = 'Romance',
   SCIFI = 'Sci-Fi',
   THRILLERS = 'Thrillers',
 }
-
-// export const GENRES_LIST: TypeGenres[] = [
-//   {
-//     titleGenre: 'All',
-//     id: 1,
-//   },
-//   {
-//     titleGenre: 'Comedies',
-//     id: 1,
-//   },
-//   {
-//     titleGenre: 'Crime',
-//     id: 2,
-//   },
-//   {
-//     titleGenre: 'Documentary',
-//     id: 3.
-//   },
-//   {
-//     titleGenre: 'Dramas',
-//     id: 4,
-//   },
-//   {
-//     titleGenre: 'Horror',
-//     id: 5,
-//   },
-//   {
-//     titleGenre: 'Kids & Family',
-//     id: 6,
-//   },
-//   {
-//     titleGenre: 'Romance',
-//     id: 7
-//   },
-//   {
-//     titleGenre: 'Sci-Fi',
-//     id: 8
-//   },
-//   {
-//     titleGenre: 'Thrillers',
-//     id: 9
-//   },
-// ];
+export const Genres = [ 'All', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers', ];

@@ -1,27 +1,20 @@
 import { useState } from 'react';
 import { TypeFilm } from '../../types/film-type';
 import FilmCard from '../film-card/film-card';
-import { TypeGenres } from '../../types/genre-type';
 import Genre from '../genre/genre';
 
 type MovieListProps = {
   films: TypeFilm[],
-  genres: TypeGenres[],
 }
 
-function MovieList({ films, genres }: MovieListProps): JSX.Element {
+function MovieList({ films }: MovieListProps): JSX.Element {
   const [userCard, setUserCard] = useState(NaN);
 
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <ul className="catalog__genres-list">
-        <li className="catalog__genres-item catalog__genres-item--active">
-          <a href="#todo"className="catalog__genres-link">All genres</a>
-        </li>
-        { genres.map((genre) => <Genre key={ genre.id} nameGenre={ genre.titleGenre }/>) }
-      </ul>
+      <Genre />
 
       <div className="catalog__films-list">
         { films.map((film) => (

@@ -9,7 +9,6 @@ import Player from '../../pages/player-screen/player-screen';
 import Error from '../error/error';
 import PrivateRoute from '../../components/private-route/private-route';
 import { TypeFilm } from '../../types/film-type';
-import { TypeGenres } from '../../types/genre-type';
 import { FavoriteFilms } from '../../types/favorite-films';
 import Reviews from '../../types/reviews';
 
@@ -18,18 +17,17 @@ type filmInfo = {
   genre: string,
   year: number,
   films: TypeFilm[],
-  genres: TypeGenres[],
   favouriteList: FavoriteFilms[],
   reviews: Reviews;
 }
 
-function App({ title, genre, year, films, genres, favouriteList, reviews }: filmInfo): JSX.Element {
+function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path = { AppRoute.Main }
-          element = { <WelcomeScreen title={ title } genre={ genre } year={ year } films={ films } genres={ genres }/> }
+          element = { <WelcomeScreen title={ title } genre={ genre } year={ year } films={ films } /> }
         />
         <Route
           path = { AppRoute.SignIn }
