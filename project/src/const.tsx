@@ -1,5 +1,3 @@
-//import { TypeGenres } from './types/genre-type';
-
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -16,7 +14,7 @@ export enum AuthorizationStatus {
 }
 
 export enum GenresList {
-  ALL = 'All',
+  ALL = 'All genres',
   COMEDIES = 'Comedies',
   CRIME = 'Crime',
   DOCUMENTARY = 'Documentary',
@@ -27,4 +25,4 @@ export enum GenresList {
   SCIFI = 'Sci-Fi',
   THRILLERS = 'Thrillers',
 }
-export const Genres = [ 'All', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers', ];
+export const Genres = [ 'All genres', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers', ];

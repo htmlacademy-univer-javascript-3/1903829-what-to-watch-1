@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { TypeFilm } from '../../types/film-type';
 import FilmCard from '../film-card/film-card';
 import Genre from '../genre/genre';
+import { useAppSelector } from '../../hooks';
+import { sortGenreFilm } from '../../utils/functions';
 
 type MovieListProps = {
   films: TypeFilm[],
@@ -9,6 +11,7 @@ type MovieListProps = {
 
 function MovieList({ films }: MovieListProps): JSX.Element {
   const [userCard, setUserCard] = useState(NaN);
+  const changeGenre = useAppSelector((state) => state.genre);
 
   return (
     <section className="catalog">
@@ -17,7 +20,7 @@ function MovieList({ films }: MovieListProps): JSX.Element {
       <Genre />
 
       <div className="catalog__films-list">
-        { films.map((film) => (
+        { sortGenreFilm(films, changeGenre).map((film: TypeFilm) => (
           <FilmCard
             key={ film.id } id={ film.id } name={film.name } previewImage={ film.previewImage } activeCard={ film.id === userCard }
             srcVideo={ film.previewVideoLink } onMouseOver={ (filmId: number) => {

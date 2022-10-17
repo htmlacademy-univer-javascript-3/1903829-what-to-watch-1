@@ -1,11 +1,29 @@
-import { Genres } from '../../const';
+import { useState, MouseEvent } from 'react';
+import { TypeFilm } from '../../types/film-type';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeGenreFilm } from '../../store/action';
+
+const getAllGenres = (filmsList: TypeFilm[]) => (
+  [...new Set(['All genres', ...filmsList.map((film) => film.genre)])]
+);
 
 function Genre(): JSX.Element {
+  const [changeGenre, setChangeGenre] = useState('All genres');
+  const dispatch = useAppDispatch();
+  const filmsList = useAppSelector((state) => state.filmList);
+  const genres = getAllGenres(filmsList);
+
+  const handleGenreClick = (evt: MouseEvent<HTMLAnchorElement>, genre: string) => {
+    evt.preventDefault();
+    dispatch(changeGenreFilm({ genre: genre }));
+    setChangeGenre(genre);
+  };
+
   return (
     <ul className="catalog__genres-list">
-      { Genres.map((genre) => (
-        <li className="catalog__genres-item" key={genre}>
-          <a href="#todo" className="catalog__genres-link">{genre}</a>
+      { genres.map((genre) => (
+        <li className={`catalog__genres-item ${changeGenre === genre && 'catalog__genres-item--active'}`} key={ genre }>
+          <a href="/" className="catalog__genres-link" onClick={(evt) => handleGenreClick(evt, genre)}>{ genre }</a>
         </li>))}
     </ul>
   );

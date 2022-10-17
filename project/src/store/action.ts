@@ -1,4 +1,4 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const changeCenre = createAction('films/changeGenre');
+export const changeGenreFilm = createAction<{ genre: string }>('films/changeGenre');
 
