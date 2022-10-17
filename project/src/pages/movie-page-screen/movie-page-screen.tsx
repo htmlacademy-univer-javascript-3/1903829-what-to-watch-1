@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { TypeFilm } from '../../types/film-type';
+import TypeFilm from '../../types/film-type';
 import Reviews from '../../types/reviews';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import FilmCard from '../../components/film-card/film-card';

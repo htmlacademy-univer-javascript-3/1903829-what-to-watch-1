@@ -1,5 +1,5 @@
 import { Logo, LogoLight } from '../../components/logo/logo';
-import { FavoriteFilms } from '../../types/favorite-films';
+import FavoriteFilms from '../../types/favorite-films';
 import FilmCardFavourite from '../../components/favourite-film-card/favourite-film-card';
 
 type MyListProps = {

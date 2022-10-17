@@ -1,6 +1,6 @@
-import { TypeFilm } from '../types/film-type';
+import TypeFilm from '../types/film-type';
 
-export const filmsList: TypeFilm[] = [
+const filmsList: TypeFilm[] = [
   {
     id: 1,
     name: 'We need to talk about Kevin',
@@ -18,7 +18,7 @@ export const filmsList: TypeFilm[] = [
       'Tilda Swinton', 'John C. Reilly', 'Ezra Miller'
     ],
     runTime: 112,
-    genre: 'thriller',
+    genre: 'Thrillers',
     released: 2011,
     isFavorite: false,
   },
@@ -39,7 +39,7 @@ export const filmsList: TypeFilm[] = [
       'Taika Waititi', 'Jemaine Clement', 'Kayvan Novak', 'Matt Berry', 'Natasia Demetriou'
     ],
     runTime: 162,
-    genre: 'Comedy',
+    genre: 'Comedies',
     released: 2019,
     isFavorite: false,
   },
@@ -60,7 +60,7 @@ export const filmsList: TypeFilm[] = [
       'Denzel Washington', 'Frances McDormand', 'Bertie Carvel', 'Alex Hassell', 'Corey Hawkins'
     ],
     runTime: 105,
-    genre: 'history',
+    genre: 'Dramas',
     released: 2021,
     isFavorite: false,
   },
@@ -81,7 +81,7 @@ export const filmsList: TypeFilm[] = [
       'Owen Wilson', 'Adrien Brody', 'Jason Schwartzman', 'Anjelica Huston'
     ],
     runTime: 91,
-    genre: 'drama',
+    genre: 'Dramas',
     released: 2007,
     isFavorite: false,
   },
@@ -102,7 +102,7 @@ export const filmsList: TypeFilm[] = [
       'Rowan Atkinson', 'Natalie Imbruglia', 'Ben Miller', 'John Malkovich'
     ],
     runTime: 88,
-    genre: 'Comedy',
+    genre: 'Comedies',
     released: 2003,
     isFavorite: false,
   },
@@ -123,7 +123,7 @@ export const filmsList: TypeFilm[] = [
       'Leonardo DiCaprio', 'Tom Hardy', 'Domhnall Gleeson', 'Will Poulter'
     ],
     runTime: 156,
-    genre: 'Drama',
+    genre: 'Dramas',
     released: 2015,
     isFavorite: false,
   },
@@ -144,7 +144,7 @@ export const filmsList: TypeFilm[] = [
       'Benicio del Toro', 'Dennis Farina', 'Vinnie Jones', 'Brad Pitt', 'Rade Šerbedžija', 'Jason Statham'
     ],
     runTime: 102,
-    genre: 'Criminal',
+    genre: 'Crime',
     released: 2000,
     isFavorite: false,
   },
@@ -165,8 +165,10 @@ export const filmsList: TypeFilm[] = [
       'Tom Cruise', 'Dakota Fanning', 'Miranda Otto', 'Tim Robbins'
     ],
     runTime: 116,
-    genre: 'Action',
+    genre: 'Thrillers',
     released: 2005,
     isFavorite: false,
   },
 ];
+
+export default filmsList;

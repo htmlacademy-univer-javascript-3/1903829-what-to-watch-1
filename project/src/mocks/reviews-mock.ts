@@ -1,6 +1,6 @@
 import Reviews from '../types/reviews';
 
-export const ReviewsMock:Reviews = [
+const ReviewsMock: Reviews = [
   {
     comment: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed films in years.',
     date: 'December 24, 2016',
@@ -42,3 +42,5 @@ export const ReviewsMock:Reviews = [
     }
   },
 ];
+
+export default ReviewsMock;

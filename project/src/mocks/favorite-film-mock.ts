@@ -1,6 +1,6 @@
-import { FavoriteFilms } from '../types/favorite-films';
+import FavoriteFilms from '../types/favorite-films';
 
-export const favoriteFilmMock: FavoriteFilms[] = [
+const favoriteFilmMock: FavoriteFilms[] = [
   {
     id: 3,
     name: 'Macbeth',
@@ -18,7 +18,7 @@ export const favoriteFilmMock: FavoriteFilms[] = [
       'Denzel Washington', 'Frances McDormand', 'Bertie Carvel', 'Alex Hassell', 'Corey Hawkins'
     ],
     runTime: 105,
-    genre: 'history',
+    genre: 'Drama',
     released: 2021,
     isFavorite: false,
   },
@@ -39,8 +39,10 @@ export const favoriteFilmMock: FavoriteFilms[] = [
       'Rowan Atkinson', 'Natalie Imbruglia', 'Ben Miller', 'John Malkovich'
     ],
     runTime: 88,
-    genre: 'Comedy',
+    genre: 'Comedies',
     released: 2003,
     isFavorite: false,
   },
 ];
+
+export default favoriteFilmMock;

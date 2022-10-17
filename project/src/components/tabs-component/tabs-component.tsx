@@ -1,4 +1,4 @@
-import { TypeFilm } from '../../types/film-type';
+import TypeFilm from '../../types/film-type';
 import Reviews from '../../types/reviews';
 import MoviePageComponent from '../movie-page-component/movie-page-component';
 import AddDetails from '../details-component/details-component';

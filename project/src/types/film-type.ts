@@ -1,4 +1,4 @@
-export type TypeFilm = {
+type TypeFilm = {
   id: number;
   name: string;
   posterImage: string;
@@ -17,3 +17,5 @@ export type TypeFilm = {
   released: number;
   isFavorite: boolean;
 };
+
+export default TypeFilm;
