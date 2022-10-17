@@ -1,4 +1,4 @@
-import { TypeGenres } from './types/genre-type';
+//import { TypeGenres } from './types/genre-type';
 
 export enum AppRoute {
   Main = '/',
@@ -15,41 +15,58 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const GENRES_LIST: TypeGenres[] = [
-  {
-    titleGenre: 'Comedies',
-    id: 1,
-  },
-  {
-    titleGenre: 'Crime',
-    id: 2,
-  },
-  {
-    titleGenre: 'Documentary',
-    id: 3.
-  },
-  {
-    titleGenre: 'Dramas',
-    id: 4,
-  },
-  {
-    titleGenre: 'Horror',
-    id: 5,
-  },
-  {
-    titleGenre: 'Kids & Family',
-    id: 6,
-  },
-  {
-    titleGenre: 'Romance',
-    id: 7
-  },
-  {
-    titleGenre: 'Sci-Fi',
-    id: 8
-  },
-  {
-    titleGenre: 'Thrillers',
-    id: 9
-  },
-];
+export enum GenresList {
+  ALL = 'All',
+  COMEDIES = 'Comedies',
+  CRIME = 'Crime',
+  DOCUMENTARY = 'Documentary',
+  DRAMA = 'Drama',
+  HORROR = 'Horror',
+  KIDS_FAMILY = 'Kids & Family',
+  ROMANCE = 'Romance',
+  SCIFI = 'Sci-Fi',
+  THRILLERS = 'Thrillers',
+}
+
+// export const GENRES_LIST: TypeGenres[] = [
+//   {
+//     titleGenre: 'All',
+//     id: 1,
+//   },
+//   {
+//     titleGenre: 'Comedies',
+//     id: 1,
+//   },
+//   {
+//     titleGenre: 'Crime',
+//     id: 2,
+//   },
+//   {
+//     titleGenre: 'Documentary',
+//     id: 3.
+//   },
+//   {
+//     titleGenre: 'Dramas',
+//     id: 4,
+//   },
+//   {
+//     titleGenre: 'Horror',
+//     id: 5,
+//   },
+//   {
+//     titleGenre: 'Kids & Family',
+//     id: 6,
+//   },
+//   {
+//     titleGenre: 'Romance',
+//     id: 7
+//   },
+//   {
+//     titleGenre: 'Sci-Fi',
+//     id: 8
+//   },
+//   {
+//     titleGenre: 'Thrillers',
+//     id: 9
+//   },
+// ];
