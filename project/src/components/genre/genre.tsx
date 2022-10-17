@@ -10,7 +10,7 @@ const getAllGenres = (filmsList: TypeFilm[]) => (
 function Genre(): JSX.Element {
   const [changeGenre, setChangeGenre] = useState('All genres');
   const dispatch = useAppDispatch();
-  const filmsList = useAppSelector((state) => state.filmList);
+  const filmsList = useAppSelector((state) => state.filmsList);
   const genres = getAllGenres(filmsList);
 
   const handleGenreClick = (evt: MouseEvent<HTMLAnchorElement>, genre: string) => {
