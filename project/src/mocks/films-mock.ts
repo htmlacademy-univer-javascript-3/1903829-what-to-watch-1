@@ -1,6 +1,6 @@
-import { TypeFilm } from '../types/film-type';
+import TypeFilm from '../types/film-type';
 
-export const filmsList: TypeFilm[] = [
+const filmsList: TypeFilm[] = [
   {
     id: 1,
     name: 'We need to talk about Kevin',
@@ -170,3 +170,5 @@ export const filmsList: TypeFilm[] = [
     isFavorite: false,
   },
 ];
+
+export default filmsList;

@@ -1,5 +1,5 @@
 import { useState, MouseEvent } from 'react';
-import { TypeFilm } from '../../types/film-type';
+import TypeFilm from '../../types/film-type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeGenreFilm } from '../../store/action';
 

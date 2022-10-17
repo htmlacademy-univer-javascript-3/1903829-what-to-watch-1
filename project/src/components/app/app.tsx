@@ -8,8 +8,8 @@ import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
 import Error from '../error/error';
 import PrivateRoute from '../../components/private-route/private-route';
-import { TypeFilm } from '../../types/film-type';
-import { FavoriteFilms } from '../../types/favorite-films';
+import TypeFilm from '../../types/film-type';
+import FavoriteFilms from '../../types/favorite-films';
 import Reviews from '../../types/reviews';
 
 type filmInfo = {

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { TypeFilm } from '../../types/film-type';
+import TypeFilm from '../../types/film-type';
 import FilmCard from '../film-card/film-card';
 import Genre from '../genre/genre';
 import { useAppSelector } from '../../hooks';
-import { sortGenreFilm } from '../../utils/functions';
+import { SortGenreFilm } from '../../utils/functions';
 
 type MovieListProps = {
   films: TypeFilm[],
@@ -20,7 +20,7 @@ function MovieList({ films }: MovieListProps): JSX.Element {
       <Genre />
 
       <div className="catalog__films-list">
-        { sortGenreFilm(films, changeGenre).map((film: TypeFilm) => (
+        { SortGenreFilm(films, changeGenre).map((film: TypeFilm) => (
           <FilmCard
             key={ film.id } id={ film.id } name={film.name } previewImage={ film.previewImage } activeCard={ film.id === userCard }
             srcVideo={ film.previewVideoLink } onMouseOver={ (filmId: number) => {

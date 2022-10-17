@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { filmsList } from './mocks/films-mock';
-import { favoriteFilmMock } from './mocks/favorite-film-mock';
-import { ReviewsMock } from './mocks/reviews-mock';
+import filmsList from './mocks/films-mock';
+import favoriteFilmMock from './mocks/favorite-film-mock';
+import ReviewsMock from './mocks/reviews-mock';
 import { store } from './store';
 
 const root = ReactDOM.createRoot(
