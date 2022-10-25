@@ -1,13 +1,23 @@
 import { createReducer } from '@reduxjs/toolkit';
-import filmsList from '../mocks/films-mock';
-import { changeGenreFilm, increaseCardCount } from './action';
+import { AuthorizationStatus } from '../const';
+import TypeFilm from '../types/film-type';
+import { changeGenreFilm, increaseCardCount, loadFilms, requireAuthorization } from './action';
 import { SortGenreFilm } from '../utils/functions';
 
-const initialState = {
+type InitialState = {
+  genre: string,
+  filmsList: TypeFilm[];
+  countShowCard: number,
+  oneGenreList: TypeFilm[],
+  authorizationStatus: string,
+}
+
+const initialState: InitialState = {
   genre: 'All genres',
-  filmsList: filmsList,
-  countShowCard: filmsList.length < 8 ? filmsList.length : 8,
-  oneGenreList: filmsList,
+  filmsList: [],
+  countShowCard: 0,
+  oneGenreList: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -21,6 +31,12 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(increaseCardCount, (state) => {
       state.countShowCard = (state.countShowCard + 8) < state.oneGenreList.length ?
         state.countShowCard + 8 : state.oneGenreList.length;
+    })
+    .addCase(loadFilms, (state, action) => {
+      state.filmsList = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
