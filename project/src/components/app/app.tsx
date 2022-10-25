@@ -11,6 +11,8 @@ import PrivateRoute from '../../components/private-route/private-route';
 import TypeFilm from '../../types/film-type';
 import FavoriteFilms from '../../types/favorite-films';
 import Reviews from '../../types/reviews';
+import { useAppSelector } from '../../hooks';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type filmInfo = {
   title: string,
@@ -21,7 +23,16 @@ type filmInfo = {
   reviews: Reviews;
 }
 
+const isCheckedAuth = (authorizationStatus: string): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;
+
 function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+
+  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+    return ( <LoadingScreen /> );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -37,7 +48,7 @@ function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): J
           path = { AppRoute.MyList }
           element={
             <PrivateRoute
-              authorizationStatus={ AuthorizationStatus.NoAuth }
+              authorizationStatus={ authorizationStatus }
             >
               <MyList myList={ favouriteList }/>
             </PrivateRoute>
@@ -48,8 +59,14 @@ function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): J
           element = { <Film films={ films } reviews={ reviews }/> }
         />
         <Route
-          path = { AppRoute.AddReview }
-          element = { <AddReview />}
+          path={`/films/:id${ AppRoute.AddReview }`}
+          element={
+            <PrivateRoute
+              authorizationStatus={ authorizationStatus }
+            >
+              <AddReview />
+            </PrivateRoute>
+          }
         />
         <Route
           path = { AppRoute.Player }
