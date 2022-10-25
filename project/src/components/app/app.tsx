@@ -37,7 +37,7 @@ function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): J
           path = { AppRoute.MyList }
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={ AuthorizationStatus.NoAuth }
             >
               <MyList myList={ favouriteList }/>
             </PrivateRoute>

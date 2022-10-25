@@ -1,3 +1,6 @@
+const TIMEOUT_SHOW_ERROR = 2000;
+const CARDS_PER_STEP = 8;
+
 enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -13,4 +16,10 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export { AppRoute, AuthorizationStatus };
+enum APIRoute {
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export { AppRoute, AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };
