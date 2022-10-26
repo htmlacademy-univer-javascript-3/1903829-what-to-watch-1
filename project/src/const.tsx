@@ -8,6 +8,7 @@ enum AppRoute {
   Film = '/films/:id',
   AddReview = '/review',
   Player = '/player/:id',
+  Root = '/',
 }
 
 enum AuthorizationStatus {

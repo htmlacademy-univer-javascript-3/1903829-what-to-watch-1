@@ -18,7 +18,7 @@ const filmsList: TypeFilm[] = [
       'Tilda Swinton', 'John C. Reilly', 'Ezra Miller'
     ],
     runTime: 112,
-    genre: 'Thrillers',
+    genre: 'Thriller',
     released: 2011,
     isFavorite: false,
   },
@@ -39,7 +39,7 @@ const filmsList: TypeFilm[] = [
       'Taika Waititi', 'Jemaine Clement', 'Kayvan Novak', 'Matt Berry', 'Natasia Demetriou'
     ],
     runTime: 162,
-    genre: 'Comedies',
+    genre: 'Comedy',
     released: 2019,
     isFavorite: false,
   },
@@ -60,7 +60,7 @@ const filmsList: TypeFilm[] = [
       'Denzel Washington', 'Frances McDormand', 'Bertie Carvel', 'Alex Hassell', 'Corey Hawkins'
     ],
     runTime: 105,
-    genre: 'Dramas',
+    genre: 'Drama',
     released: 2021,
     isFavorite: false,
   },
@@ -81,7 +81,7 @@ const filmsList: TypeFilm[] = [
       'Owen Wilson', 'Adrien Brody', 'Jason Schwartzman', 'Anjelica Huston'
     ],
     runTime: 91,
-    genre: 'Dramas',
+    genre: 'Drama',
     released: 2007,
     isFavorite: false,
   },
@@ -102,7 +102,7 @@ const filmsList: TypeFilm[] = [
       'Rowan Atkinson', 'Natalie Imbruglia', 'Ben Miller', 'John Malkovich'
     ],
     runTime: 88,
-    genre: 'Comedies',
+    genre: 'Comedy',
     released: 2003,
     isFavorite: false,
   },
@@ -123,7 +123,7 @@ const filmsList: TypeFilm[] = [
       'Leonardo DiCaprio', 'Tom Hardy', 'Domhnall Gleeson', 'Will Poulter'
     ],
     runTime: 156,
-    genre: 'Dramas',
+    genre: 'Drama',
     released: 2015,
     isFavorite: false,
   },
@@ -165,7 +165,7 @@ const filmsList: TypeFilm[] = [
       'Tom Cruise', 'Dakota Fanning', 'Miranda Otto', 'Tim Robbins'
     ],
     runTime: 116,
-    genre: 'Thrillers',
+    genre: 'Thriller',
     released: 2005,
     isFavorite: false,
   },
