@@ -5,6 +5,7 @@ import Reviews from '../../types/reviews';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import FilmCard from '../../components/film-card/film-card';
 import TabsComponent from '../../components/tabs-component/tabs-component';
+import SignOut from '../../components/sign-out-component/sign-out-component';
 
 type MoviePageScreenProps = {
   films: TypeFilm[];
@@ -31,16 +32,7 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
           <header className="page-header film-card__head">
             <Logo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href="#todo" className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <SignOut />
           </header>
 
           <div className="film-card__wrap">
