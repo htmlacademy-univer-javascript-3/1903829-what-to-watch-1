@@ -1,23 +1,20 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import TypeFilm from '../../types/film-type';
-import Reviews from '../../types/reviews';
+import { AuthorizationStatus } from '../../const';
+// import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { Logo, LogoLight } from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 
-type MoviePageScreenProps = {
-  films: TypeFilm[];
-  reviews: Reviews;
-}
-
-function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
-  const [userCard, setUserCard] = useState(0);
-  const [chooseTab, setChooseTab] = useState<string>('Overview');
+function MoviePage(): JSX.Element {
+  //const dispatch = useAppDispatch();
+  //const [chooseTab, setChooseTab] = useState<string>('Overview');
 
   const id = Number(useParams().id);
-  const film = films.find((x) => x.id === id);
+  const film = useAppSelector((state) => state.film);
+  const reviews = useAppSelector((state) => state.reviews);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <>
@@ -57,7 +54,10 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link className="btn film-card__button" to={`/films/:${ id }/review`}>Add review</Link>
+                {
+                  authStatus === AuthorizationStatus.Auth &&
+                  <Link className="btn film-card__button" to={`/films/:${ id }/review`}>Add review</Link>
+                }
               </div>
             </div>
           </div>
@@ -72,8 +72,6 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
             <TabsComponent
               film={ film }
               reviews={ reviews }
-              chooseTab={ chooseTab }
-              updateTab={ (tab: string) => { setChooseTab(tab);} }
             />
 
           </div>
@@ -85,14 +83,7 @@ function MoviePage({ films, reviews }: MoviePageScreenProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            { films.map((movie) => (
-              <FilmCard
-                key={ movie.id } id={ movie.id } name={movie.name } previewImage={ movie.previewImage } activeCard={ movie.id === userCard }
-                srcVideo={ movie.previewVideoLink } onMouseOver={ () => {
-                  setUserCard(movie.id);
-                } }
-              />)
-            ) }
+            {/* тут похожие */}
           </div>
         </section>
 
