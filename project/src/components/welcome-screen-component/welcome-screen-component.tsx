@@ -1,9 +1,10 @@
 import { Logo } from '../logo/logo';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
+import { getFilm } from '../../store/app-process/selectors';
 
 function WelcomeScreenComponent(): JSX.Element {
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector(getFilm);
 
   return (
     <section className="film-card">

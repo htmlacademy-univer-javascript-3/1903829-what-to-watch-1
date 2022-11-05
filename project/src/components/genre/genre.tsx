@@ -1,7 +1,8 @@
 import { useState, MouseEvent } from 'react';
 import TypeFilm from '../../types/film-type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenreFilm } from '../../store/action';
+import { changeGenreFilm } from '../../store/reducer';
+import { getFilms } from '../../store/app-process/selectors';
 
 const getAllGenres = (filmsList: TypeFilm[]) => (
   [...new Set(['All genres', ...filmsList.map((film) => film.genre)])]
@@ -10,7 +11,7 @@ const getAllGenres = (filmsList: TypeFilm[]) => (
 function Genre(): JSX.Element {
   const [changeGenre, setChangeGenre] = useState('All genres');
   const dispatch = useAppDispatch();
-  const filmsList = useAppSelector((state) => state.filmsList);
+  const filmsList = useAppSelector(getFilms);
   const genres = getAllGenres(filmsList);
 
   const handleGenreClick = (evt: MouseEvent<HTMLAnchorElement>, genre: string) => {

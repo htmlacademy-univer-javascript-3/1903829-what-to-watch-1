@@ -19,9 +19,6 @@ root.render(
     <Provider store={ store }>
       <ErrorMessage />
       <App
-        title = { 'Title' }
-        genre = { 'Genre' }
-        year = { 0 }
         favouriteList = { favoriteFilmMock }
       />
     </Provider>

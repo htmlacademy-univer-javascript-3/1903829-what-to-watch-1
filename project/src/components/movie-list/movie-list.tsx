@@ -3,10 +3,11 @@ import FilmCard from '../film-card/film-card';
 import Genre from '../genre/genre';
 import ShowMoreComponent from '../show-more-component/show-more-component';
 import { useAppSelector } from '../../hooks';
+import { getCountCard, getFilteredFilms } from '../../store/app-process/selectors';
 
 function MovieList(): JSX.Element {
-  const countCard = useAppSelector((state) => state.countShowCard);
-  const filteredFilm = useAppSelector((state) => state.filmsListFiltered);
+  const countCard = useAppSelector(getCountCard);
+  const filteredFilm = useAppSelector(getFilteredFilms);
 
   return (
     <section className="catalog">

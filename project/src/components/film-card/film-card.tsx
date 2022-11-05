@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { resetMainScreen } from '../../store/action';
+import { resetMainScreen } from '../../store/reducer';
 import VideoPlayerComponent from '../../components/video-player-component/video-player-component';
 
 type FilmCardType = {

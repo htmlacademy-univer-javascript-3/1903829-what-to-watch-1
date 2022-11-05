@@ -11,22 +11,19 @@ import PrivateRoute from '../../components/private-route/private-route';
 import FavoriteFilms from '../../types/favorite-films';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 
 type filmInfo = {
-  title: string,
-  genre: string,
-  year: number,
   favouriteList: FavoriteFilms[],
 }
 
 const isCheckedAuth = (authorizationStatus: string): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
-function App({ title, genre, year, favouriteList }: filmInfo): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+function App({ favouriteList }: filmInfo): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus)) {
     return ( <LoadingScreen /> );
   }
 

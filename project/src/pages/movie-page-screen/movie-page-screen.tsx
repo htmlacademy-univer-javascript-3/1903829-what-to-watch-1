@@ -7,17 +7,19 @@ import { Logo, LogoLight } from '../../components/logo/logo';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import LoadingScreen from '../loading-screen/loading-screen';
+import { getFilm, getReviews, getIsLoaded } from '../../store/app-process/selectors';
+import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 
 function MoviePage(): JSX.Element {
   //const dispatch = useAppDispatch();
   //const [chooseTab, setChooseTab] = useState<string>('Overview');
 
   const id = Number(useParams().id);
-  const film = useAppSelector((state) => state.film);
-  const reviews = useAppSelector((state) => state.reviews);
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const film = useAppSelector(getFilm);
+  const reviews = useAppSelector(getReviews);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const isLoaded = useAppSelector((state) => state.isLoaded);
+  const isLoaded = useAppSelector(getIsLoaded);
   if (!isLoaded) {
     return <LoadingScreen />;
   }
@@ -61,7 +63,7 @@ function MoviePage(): JSX.Element {
                   <span className="film-card__count">9</span>
                 </button>
                 {
-                  authStatus === AuthorizationStatus.Auth &&
+                  authorizationStatus === AuthorizationStatus.Auth &&
                   <Link className="btn film-card__button" to={`/films/:${ id }/review`}>Add review</Link>
                 }
               </div>

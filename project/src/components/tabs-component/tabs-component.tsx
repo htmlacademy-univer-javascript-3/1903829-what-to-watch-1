@@ -4,7 +4,8 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import MoviePageComponent from '../movie-page-component/movie-page-component';
 import AddDetails from '../details-component/details-component';
 import ReviewsComponent from '../reviews/reviews';
-import { changeFilmTab } from '../../store/action';
+import { changeFilmTab } from '../../store/film-data/film-data';
+import { getChooseTab } from '../../store/app-process/selectors';
 
 type TabsComponentProps = {
   film: TypeFilm | null,
@@ -13,7 +14,7 @@ type TabsComponentProps = {
 
 function TabsComponent({ film, reviews }: TabsComponentProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const chooseTab = useAppSelector((state) => state.filmTab);
+  const chooseTab = useAppSelector(getChooseTab);
 
   return (
     <div className="film-card__desc">
