@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function MoviePage(): JSX.Element {
   //const dispatch = useAppDispatch();
@@ -15,6 +16,11 @@ function MoviePage(): JSX.Element {
   const film = useAppSelector((state) => state.film);
   const reviews = useAppSelector((state) => state.reviews);
   const authStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const isLoaded = useAppSelector((state) => state.isLoaded);
+  if (!isLoaded) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>

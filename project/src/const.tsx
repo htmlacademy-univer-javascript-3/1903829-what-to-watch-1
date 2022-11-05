@@ -21,6 +21,15 @@ enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  Favorite = '/favorite',
+  Reviews = '/comments',
 }
 
-export { AppRoute, AuthorizationStatus, APIRoute, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };
+enum NameSpace {
+  User = 'USER',
+  WelcomeScreen = 'MAIN',
+  FilmScreen = 'FILM',
+  App ='APP'
+}
+
+export { AppRoute, AuthorizationStatus, APIRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };
