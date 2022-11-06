@@ -1,22 +1,28 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LogoLight } from '../../components/logo/logo';
 import WelcomeScreenComponent from '../../components/welcome-screen-component/welcome-screen-component';
 import MovieList from '../../components/movie-list/movie-list';
-import TypeFilm from '../../types/film-type';
+import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { AuthorizationStatus } from '../../const';
+import { fetchFavoriteFilmsAction } from '../../store/api-actions';
 
-type WelcomeScreenProps = {
-  title: string,
-  genre: string,
-  year: number,
-  films: TypeFilm[],
-}
+function WelcomeScreen(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
-function WelcomeScreen({ title, genre, year, films }: WelcomeScreenProps): JSX.Element {
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+  }, [authStatus, dispatch]);
+
   return (
     <>
-      <WelcomeScreenComponent title={ title } genre={ genre } year={ year }/>
+      <WelcomeScreenComponent />
 
       <div className="page-content">
-        <MovieList films={ films } />
+        <MovieList />
 
         <footer className="page-footer">
           <LogoLight />

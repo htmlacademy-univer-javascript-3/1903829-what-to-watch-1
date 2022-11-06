@@ -1,20 +1,13 @@
-import { useState } from 'react';
 import TypeFilm from '../../types/film-type';
 import FilmCard from '../film-card/film-card';
 import Genre from '../genre/genre';
 import ShowMoreComponent from '../show-more-component/show-more-component';
 import { useAppSelector } from '../../hooks';
-import { SortGenreFilm } from '../../utils/functions';
+import { getCountCard, getFilteredFilms } from '../../store/app-process/selectors';
 
-type MovieListProps = {
-  films: TypeFilm[],
-}
-
-function MovieList({ films }: MovieListProps): JSX.Element {
-  const [userCard, setUserCard] = useState(NaN);
-  const changeGenre = useAppSelector((state) => state.genre);
-  const countCard = useAppSelector((state) => state.countShowCard);
-  const filteredFilm = SortGenreFilm(films, changeGenre);
+function MovieList(): JSX.Element {
+  const countCard = useAppSelector(getCountCard);
+  const filteredFilm = useAppSelector(getFilteredFilms);
 
   return (
     <section className="catalog">
@@ -25,10 +18,7 @@ function MovieList({ films }: MovieListProps): JSX.Element {
       <div className="catalog__films-list">
         { filteredFilm.slice(0, countCard).map((film: TypeFilm) => (
           <FilmCard
-            key={ film.id } id={ film.id } name={film.name } previewImage={ film.previewImage } activeCard={ film.id === userCard }
-            srcVideo={ film.previewVideoLink } onMouseOver={ (filmId: number) => {
-              setUserCard(filmId);
-            } }
+            key={ film.id } id={ film.id } name={ film.name } previewImage={ film.previewImage } srcVideo={ film.previewVideoLink }
           />)
         ) }
       </div>

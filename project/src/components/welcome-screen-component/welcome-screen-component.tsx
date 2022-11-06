@@ -1,13 +1,11 @@
 import { Logo } from '../logo/logo';
 import SignOut from '../../components/sign-out-component/sign-out-component';
+import { useAppSelector } from '../../hooks';
+import { getFilm } from '../../store/app-process/selectors';
 
-type WelcomeScreenProps = {
-    title: string,
-    genre: string,
-    year: number,
-}
+function WelcomeScreenComponent(): JSX.Element {
+  const film = useAppSelector(getFilm);
 
-function WelcomeScreenComponent({ title, genre, year }: WelcomeScreenProps): JSX.Element {
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -29,10 +27,10 @@ function WelcomeScreenComponent({ title, genre, year }: WelcomeScreenProps): JSX
           </div>
 
           <div className="film-card__desc">
-            <h2 className="film-card__title">{ title }</h2>
+            <h2 className="film-card__title">{ film?.name }</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{ genre }</span>
-              <span className="film-card__year">{ year }</span>
+              <span className="film-card__genre">{ film?.genre }</span>
+              <span className="film-card__year">{ film?.released.toString() }</span>
             </p>
 
             <div className="film-card__buttons">

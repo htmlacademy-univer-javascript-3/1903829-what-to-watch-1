@@ -8,28 +8,22 @@ import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
 import Error from '../error/error';
 import PrivateRoute from '../../components/private-route/private-route';
-import TypeFilm from '../../types/film-type';
 import FavoriteFilms from '../../types/favorite-films';
-import Reviews from '../../types/reviews';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 
 type filmInfo = {
-  title: string,
-  genre: string,
-  year: number,
-  films: TypeFilm[],
   favouriteList: FavoriteFilms[],
-  reviews: Reviews;
 }
 
 const isCheckedAuth = (authorizationStatus: string): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
-function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+function App({ favouriteList }: filmInfo): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus)) {
     return ( <LoadingScreen /> );
   }
 
@@ -38,7 +32,7 @@ function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): J
       <Routes>
         <Route
           path = { AppRoute.Main }
-          element = { <WelcomeScreen title={ title } genre={ genre } year={ year } films={ films } /> }
+          element = { <WelcomeScreen /> }
         />
         <Route
           path = { AppRoute.SignIn }
@@ -56,7 +50,7 @@ function App({ title, genre, year, films, favouriteList, reviews }: filmInfo): J
         />
         <Route
           path = { AppRoute.Film }
-          element = { <Film films={ films } reviews={ reviews }/> }
+          element = { <Film /> }
         />
         <Route
           path={`/films/:id${ AppRoute.AddReview }`}
