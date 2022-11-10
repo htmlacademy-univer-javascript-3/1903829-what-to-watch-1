@@ -1,20 +1,15 @@
-import TypeFilm from '../../types/film-type';
-import Reviews from '../../types/reviews';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import MoviePageComponent from '../movie-page-component/movie-page-component';
 import AddDetails from '../details-component/details-component';
 import ReviewsComponent from '../reviews/reviews';
 import { changeFilmTab } from '../../store/film-data/film-data';
-import { getChooseTab } from '../../store/list-data/selectors';
+import { getChooseTab, getReviews, getFilm } from '../../store/film-data/selectors';
 
-type TabsComponentProps = {
-  film: TypeFilm | null,
-  reviews: Reviews,
-}
-
-function TabsComponent({ film, reviews }: TabsComponentProps): JSX.Element {
+function TabsComponent(): JSX.Element {
   const dispatch = useAppDispatch();
   const chooseTab = useAppSelector(getChooseTab);
+  const reviews = useAppSelector(getReviews);
+  const film = useAppSelector(getFilm);
 
   return (
     <div className="film-card__desc">

@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state.js';
 import TypeFilm from '../types/film-type.js';
 import Reviews from '../types/reviews.js';
@@ -47,6 +47,8 @@ export const loginAction = createAsyncThunk<{ token: string, avatarUrl: string, 
     return {token: token, avatarUrl: avatarUrl, userId: id};
   },
 );
+
+const redirectToRoute = createAction<string>('app/redirectToRoute');
 
 export const logoutAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -129,8 +131,8 @@ export const fetchOneFilmAction = createAsyncThunk<TypeFilm, undefined, {
   extra: AxiosInstance
 }>(
   'data/fetchPromo',
-  async (_arg, { dispatch, extra: api }) => {
-    const { data } = await api.get<TypeFilm>(APIRoute.Films);
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<TypeFilm>('/promo');
 
     return data;
   },

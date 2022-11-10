@@ -30,7 +30,6 @@ enum NameSpace {
     WelcomeScreen = 'MAIN',
     FilmScreen = 'FILM',
     App = 'APP',
-    MainScreen = 'MainScreen',
 }
 
 export { AppRoute, AuthorizationStatus, APIRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };

@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
 import ErrorMessage from './components/error-message/error-message';
-import { checkAuthAction, fetchFilmAction } from './store/api-actions';
-import favoriteFilmMock from './mocks/favorite-film-mock';
+import { checkAuthAction, fetchFilmAction, fetchOneFilmAction } from './store/api-actions';
 
 store.dispatch(fetchFilmAction());
+store.dispatch(fetchOneFilmAction());
 store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
@@ -18,9 +18,7 @@ root.render(
   <React.StrictMode>
     <Provider store={ store }>
       <ErrorMessage />
-      <App
-        favouriteList = { favoriteFilmMock }
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
 );

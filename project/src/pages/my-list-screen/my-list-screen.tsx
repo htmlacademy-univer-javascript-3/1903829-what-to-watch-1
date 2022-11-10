@@ -1,13 +1,8 @@
 import { Logo, LogoLight } from '../../components/logo/logo';
-import FavoriteFilms from '../../types/favorite-films';
-import FilmCardFavourite from '../../components/favourite-film-card/favourite-film-card';
+//import FilmCardFavourite from '../../components/favourite-film-card/favourite-film-card';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 
-type MyListProps = {
-  myList: FavoriteFilms[],
-}
-
-function MyList({ myList }: MyListProps): JSX.Element {
+function MyList(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -20,9 +15,9 @@ function MyList({ myList }: MyListProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
+        {/* <div className="catalog__films-list">
           { myList.map((film) => <FilmCardFavourite key={ film.id } name={ film.name } previewImage={ film.previewImage }/>) }
-        </div>
+        </div> */}
       </section>
 
       <footer className="page-footer">
