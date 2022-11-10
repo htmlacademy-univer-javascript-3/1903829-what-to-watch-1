@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import SignIn from '../../pages/sign-in-screen/sign-in-screen';
@@ -11,6 +11,8 @@ import PrivateRoute from '../../components/private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 const isCheckedAuth = (authorizationStatus: string): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
@@ -23,7 +25,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={ browserHistory }>
       <Routes>
         <Route
           path = { AppRoute.Main }
@@ -66,7 +68,7 @@ function App(): JSX.Element {
           element = { <Error /> }
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

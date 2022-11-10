@@ -5,6 +5,8 @@ import App from './components/app/app';
 import { store } from './store';
 import ErrorMessage from './components/error-message/error-message';
 import { checkAuthAction, fetchFilmAction, fetchOneFilmAction } from './store/api-actions';
+// import HistoryRouter from './components/history-route/history-route';
+// import browserHistory from './browser-history';
 
 store.dispatch(fetchFilmAction());
 store.dispatch(fetchOneFilmAction());
@@ -17,8 +19,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={ store }>
+      {/* <HistoryRouter history={ browserHistory }> */}
       <ErrorMessage />
       <App />
+      {/* </HistoryRouter> */}
     </Provider>
   </React.StrictMode>,
 );

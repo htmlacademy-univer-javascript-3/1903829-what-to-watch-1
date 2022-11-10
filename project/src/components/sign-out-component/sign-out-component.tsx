@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { AuthorizationStatus, AppRoute } from '../../const';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { getAuthorizationStatus, getAvatarUrl } from '../../store/user-processes/selectors';
 
 function SignOut(): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const avatar = useAppSelector(getAvatarUrl);
 
   if (authorizationStatus !== AuthorizationStatus.Auth) {
     return (
@@ -27,7 +28,9 @@ function SignOut(): JSX.Element {
     <ul className="user-block">
       <li className="user-block__item">
         <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          <Link to={AppRoute.MyList}>
+            <img src={avatar || ''} alt="User avatar" width="63" height="63"/>
+          </Link>
         </div>
       </li>
       <li className="user-block__item">

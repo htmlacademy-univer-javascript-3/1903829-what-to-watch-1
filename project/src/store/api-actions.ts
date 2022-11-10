@@ -11,6 +11,7 @@ import { store } from './index';
 import FavoriteFilms from '../types/favorite-films.js';
 import { StatusFilm } from '../types/status.js';
 import { setError } from './app-process/app-process';
+import { dropAvatarURL } from '../services/avatar';
 
 export const fetchFilmAction = createAsyncThunk<TypeFilm[], undefined, {
   dispatch: AppDispatch,
@@ -59,6 +60,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+    dropAvatarURL();
     dispatch(redirectToRoute(AppRoute.Root));
   },
 );
