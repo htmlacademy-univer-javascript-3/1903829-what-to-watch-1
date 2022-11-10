@@ -5,7 +5,7 @@ import MoviePageComponent from '../movie-page-component/movie-page-component';
 import AddDetails from '../details-component/details-component';
 import ReviewsComponent from '../reviews/reviews';
 import { changeFilmTab } from '../../store/film-data/film-data';
-import { getChooseTab } from '../../store/app-process/selectors';
+import { getChooseTab } from '../../store/list-data/selectors';
 
 type TabsComponentProps = {
   film: TypeFilm | null,

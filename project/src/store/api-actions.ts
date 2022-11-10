@@ -10,7 +10,7 @@ import { UserData } from '../types/user-data';
 import { store } from './index';
 import FavoriteFilms from '../types/favorite-films.js';
 import { StatusFilm } from '../types/status.js';
-import { setError, redirectToRoute } from './app-process/app-process';
+import { setError } from './app-process/app-process';
 
 export const fetchFilmAction = createAsyncThunk<TypeFilm[], undefined, {
   dispatch: AppDispatch,
@@ -20,6 +20,7 @@ export const fetchFilmAction = createAsyncThunk<TypeFilm[], undefined, {
   'data/fetchFilms',
   async (_arg, { dispatch, extra: api }) => {
     const { data } = await api.get<TypeFilm[]>(APIRoute.Films);
+
     return data;
   },
 );

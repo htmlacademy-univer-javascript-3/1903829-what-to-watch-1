@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CARDS_PER_STEP, NameSpace } from '../const';
-import TypeFilm from '../types/film-type';
-import Reviews from '../types/reviews';
-import { SortGenreFilm } from '../utils/functions';
-import { fetchFavoriteFilmsAction, fetchFilmAction, changeFilmStatusToView, fetchOneFilmAction } from '../store/api-actions';
+import { CARDS_PER_STEP, NameSpace } from '../../const';
+import TypeFilm from '../../types/film-type';
+import Reviews from '../../types/reviews';
+import { SortGenreFilm } from '../../utils/functions';
+import { fetchFavoriteFilmsAction, fetchFilmAction, changeFilmStatusToView, fetchOneFilmAction } from '../../store/api-actions';
 
 type InitialState = {
   genre: string,

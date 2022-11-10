@@ -1,7 +1,8 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace} from '../../const';
+import { createSlice } from '@reduxjs/toolkit';
+import { NameSpace } from '../../const';
 import { FilmData } from '../../types/FilmData';
 import { fetchFilmByID, fetchReviewsByID, changeFilmStatusToView } from '../api-actions';
+
 
 const initialState: FilmData = {
   film: null,

@@ -7,7 +7,7 @@ import { Logo, LogoLight } from '../../components/logo/logo';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { getFilm, getReviews, getIsLoaded } from '../../store/app-process/selectors';
+import { getFilm, getReviews, getIsLoaded } from '../../store/list-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 
 function MoviePage(): JSX.Element {

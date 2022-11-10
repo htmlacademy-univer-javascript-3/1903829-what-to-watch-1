@@ -26,10 +26,11 @@ enum APIRoute {
 }
 
 enum NameSpace {
-  User = 'USER',
-  WelcomeScreen = 'MAIN',
-  FilmScreen = 'FILM',
-  App ='APP'
+    User = 'USER',
+    WelcomeScreen = 'MAIN',
+    FilmScreen = 'FILM',
+    App = 'APP',
+    MainScreen = 'MainScreen',
 }
 
 export { AppRoute, AuthorizationStatus, APIRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };

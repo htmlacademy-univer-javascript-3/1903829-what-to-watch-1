@@ -1,7 +1,7 @@
 import { Logo } from '../logo/logo';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/app-process/selectors';
+import { getFilm } from '../../store/list-data/selectors';
 
 function WelcomeScreenComponent(): JSX.Element {
   const film = useAppSelector(getFilm);
