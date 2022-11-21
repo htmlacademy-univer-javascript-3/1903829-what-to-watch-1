@@ -49,7 +49,7 @@ function SignIn(): JSX.Element {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit" onClick={() => navigate(AppRoute.Root)}>Sign in</button>
+            <button className="sign-in__btn" type="submit" onClick={() => navigate(AppRoute.Main)}>Sign in</button>
           </div>
         </form>
       </div>

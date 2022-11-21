@@ -34,7 +34,7 @@ function SignOut(): JSX.Element {
         </div>
       </li>
       <li className="user-block__item">
-        <Link to={ AppRoute.Root } className="user-block__link" onClick={(evt) => {
+        <Link to={ AppRoute.Main } className="user-block__link" onClick={(evt) => {
           evt.preventDefault();
           dispatch(logoutAction());
         }}

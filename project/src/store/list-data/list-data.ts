@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { CARDS_PER_STEP, NameSpace } from '../../const';
 import TypeFilm from '../../types/film-type';
 import { SortGenreFilm } from '../../utils/functions';
-import { fetchFavoriteFilmsAction, fetchFilmAction, changeFilmStatusToView, fetchOneFilmAction } from '../../store/api-actions';
+import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, fetchOneFilmAction } from '../api-actions';
 
 type InitialState = {
   genre: string,
@@ -57,10 +57,10 @@ export const MainData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchFilmAction.pending, (state) => {
+      .addCase(fetchFilmsAction.pending, (state) => {
         state.isDataLoaded = true;
       })
-      .addCase(fetchFilmAction.fulfilled, (state, action) => {
+      .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         const films = action.payload;
 
         state.filmsList = films;

@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
-import LoadingScreen from '../loading-screen/loading-screen';
+// import LoadingScreen from '../loading-screen/loading-screen';
 import { getFilm } from '../../store/list-data/selectors';
-import { getIsFounded, getIsLoaded } from '../../store/film-data/selectors';
+// import { getIsFounded, getIsLoaded } from '../../store/film-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 import { setDataLoadedStatus } from '../../store/list-data/list-data';
 import { changeFilmTab } from '../../store/film-data/film-data';
@@ -21,8 +21,8 @@ function MoviePage(): JSX.Element {
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const isLoaded = useAppSelector(getIsLoaded);
-  const isFounded = useAppSelector(getIsFounded);
+  // const isLoaded = useAppSelector(getIsLoaded);
+  // const isFounded = useAppSelector(getIsFounded);
 
   useEffect(() => {
     dispatch(setDataLoadedStatus(true));
@@ -32,13 +32,13 @@ function MoviePage(): JSX.Element {
     dispatch(setDataLoadedStatus(false));
   }, [id, authorizationStatus, dispatch]);
 
-  if (isFounded) {
-    return <LoadingScreen />;
-  }
+  // if (!isFounded) {
+  //   return <LoadingScreen />;
+  // }
 
-  if (!isLoaded) {
-    return <LoadingScreen />;
-  }
+  // if (!isLoaded) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <>

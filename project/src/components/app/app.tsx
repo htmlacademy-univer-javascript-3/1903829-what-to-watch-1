@@ -45,10 +45,12 @@ function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route
-          path = { AppRoute.Film }
-          element = { <Film /> }
-        />
+        <Route path={AppRoute.Film}>
+          <Route
+            path={':id'}
+            element={<Film />}
+          />
+        </Route>
         <Route
           path={`/films/:id${ AppRoute.AddReview }`}
           element={

@@ -1,19 +1,20 @@
 import { AxiosInstance } from 'axios';
-import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state.js';
 import TypeFilm from '../types/film-type.js';
 import Reviews from '../types/reviews.js';
-import { dropToken } from '../services/token';
 import { APIRoute, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { store } from './index';
-import FavoriteFilms from '../types/favorite-films.js';
-import { StatusFilm } from '../types/status.js';
+import FavoriteFilms from '../types/favorite-films';
+import { StatusFilm } from '../types/status';
 import { setError } from './app-process/app-process';
+import { createAction } from '@reduxjs/toolkit';
+import { dropToken } from '../services/token';
 import { dropAvatarURL } from '../services/avatar';
 
-export const fetchFilmAction = createAsyncThunk<TypeFilm[], undefined, {
+export const fetchFilmsAction = createAsyncThunk<TypeFilm[], undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -61,7 +62,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dropAvatarURL();
-    dispatch(redirectToRoute(AppRoute.Root));
+    dispatch(redirectToRoute(AppRoute.Main));
   },
 );
 
@@ -133,8 +134,8 @@ export const fetchOneFilmAction = createAsyncThunk<TypeFilm, undefined, {
   extra: AxiosInstance
 }>(
   'data/fetchPromo',
-  async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<TypeFilm>('/promo');
+  async (_arg, { dispatch, extra: api }) => {
+    const { data } = await api.get<TypeFilm>(APIRoute.Promo);
 
     return data;
   },

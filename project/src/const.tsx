@@ -5,10 +5,9 @@ enum AppRoute {
   Main = '/',
   SignIn = '/login',
   MyList = '/mylist',
-  Film = '/films/:id',
+  Film = '/films',
   AddReview = '/review',
   Player = '/player/:id',
-  Root = '/',
 }
 
 enum AuthorizationStatus {
@@ -23,6 +22,7 @@ enum APIRoute {
   Logout = '/logout',
   Favorite = '/favorite',
   Reviews = '/comments',
+  Promo = '/promo',
 }
 
 enum NameSpace {

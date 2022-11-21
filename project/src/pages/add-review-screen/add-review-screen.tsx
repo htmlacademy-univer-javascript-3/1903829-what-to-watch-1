@@ -3,6 +3,7 @@ import AddReviewComponent from '../../components/add-review-component/add-review
 import SignOut from '../../components/sign-out-component/sign-out-component';
 
 function AddReview(): JSX.Element {
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
