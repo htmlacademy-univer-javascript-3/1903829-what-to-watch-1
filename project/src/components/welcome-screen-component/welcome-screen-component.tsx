@@ -2,14 +2,19 @@ import { Logo } from '../logo/logo';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
 import { getFilm } from '../../store/list-data/selectors';
+// import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+// import { useAppDispatch } from '../../hooks';
 
 function WelcomeScreenComponent(): JSX.Element {
   const film = useAppSelector(getFilm);
+  // const authStatus = useAppSelector(getAuthorizationStatus);
+
+  // const dispatch = useAppDispatch();
 
   return (
     <section className="film-card">
       <div className="film-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src="https://10.react.pages.academy/static/film/preview/snatch.jpg" alt="Snatch" />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -23,7 +28,7 @@ function WelcomeScreenComponent(): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src="https://10.react.pages.academy/static/film/poster/Snatch.jpg" alt="Snatch" width="218" height="327" />
           </div>
 
           <div className="film-card__desc">

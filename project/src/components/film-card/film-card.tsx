@@ -13,10 +13,12 @@ type FilmCardType = {
 
 function FilmCard({ id, name, previewImage, srcVideo }: FilmCardType): JSX.Element {
   const dispatch = useAppDispatch();
-  const [activeCard, onMouseOver] = useState(false);
+  const [activeCard, setIsPointed] = useState(false);
 
   return (
-    <article className="small-film-card catalog__films-card" onMouseOver={ () => onMouseOver(true) }>
+    <article className="small-film-card catalog__films-card"
+      onMouseEnter={ () => setIsPointed(true) } onMouseLeave={ () => setIsPointed(false) }
+    >
       <div className="small-film-card__image">
         { activeCard ? <VideoPlayerComponent src={ srcVideo } srcImage={ previewImage }/> :
           <img src={ previewImage } alt={ name } width="280" height="175"/> }
