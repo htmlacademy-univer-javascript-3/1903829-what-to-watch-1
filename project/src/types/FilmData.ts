@@ -7,4 +7,5 @@ export type FilmData = {
   comments: Reviews,
   isLoaded: boolean | null,
   isFounded: boolean | null,
+  moreFilm: TypeFilm[],
 }

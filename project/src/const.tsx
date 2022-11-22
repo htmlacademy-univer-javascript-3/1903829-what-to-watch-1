@@ -23,6 +23,7 @@ enum APIRoute {
   Favorite = '/favorite',
   Reviews = '/comments',
   Promo = '/promo',
+  Similar = '/similar',
 }
 
 enum NameSpace {

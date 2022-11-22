@@ -28,9 +28,9 @@ function WelcomeScreenComponent(): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src="https://10.react.pages.academy/static/film/poster/Snatch.jpg" alt="Snatch" width="218" height="327" />
+            <img src={ film?.posterImage } alt="Snatch" width="218" height="327" />
           </div>
-
+          {/* "https://10.react.pages.academy/static/film/poster/Snatch.jpg" */}
           <div className="film-card__desc">
             <h2 className="film-card__title">{ film?.name }</h2>
             <p className="film-card__meta">

@@ -8,18 +8,20 @@ import SignOut from '../../components/sign-out-component/sign-out-component';
 // import LoadingScreen from '../loading-screen/loading-screen';
 import { getFilm } from '../../store/list-data/selectors';
 // import { getIsFounded, getIsLoaded } from '../../store/film-data/selectors';
+import { getFilmListMore } from '../../store/film-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 import { setDataLoadedStatus } from '../../store/list-data/list-data';
 import { changeFilmTab } from '../../store/film-data/film-data';
 import { AppRoute } from '../../const';
 import { fetchFilmByID, fetchReviewsByID } from '../../store/api-actions';
+import MoreFilmComponent from '../../components/more-film-component/more-film-component';
 
 function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
-
   const id = Number(useParams().id);
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const filmListMore = useAppSelector(getFilmListMore);
 
   // const isLoaded = useAppSelector(getIsLoaded);
   // const isFounded = useAppSelector(getIsFounded);
@@ -103,23 +105,13 @@ function MoviePage(): JSX.Element {
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
-            <div className="film-card__poster film-card__poster--big">
-              <img src={ film?.posterImage } alt={ film?.name } width="218" height="327" />
-            </div>
-
             <TabsComponent />
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            {/* тут похожие */}
-          </div>
-        </section>
+        <MoreFilmComponent filmList={ filmListMore }/>
 
         <footer className="page-footer">
           <LogoLight />

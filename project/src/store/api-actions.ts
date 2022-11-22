@@ -140,3 +140,16 @@ export const fetchOneFilmAction = createAsyncThunk<TypeFilm, undefined, {
     return data;
   },
 );
+
+export const fetchMoreFilmByID = createAsyncThunk<TypeFilm[], string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchSimilarById',
+  async (filmId: string, { dispatch, extra: api }) => {
+    const { data } = await api.get<TypeFilm[]>(`${ APIRoute.Films }/${ filmId }${ APIRoute.Similar }`);
+
+    return data;
+  },
+);

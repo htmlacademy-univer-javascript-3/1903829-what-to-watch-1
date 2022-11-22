@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { resetMainScreen } from '../../store/list-data/list-data';
 import VideoPlayerComponent from '../../components/video-player-component/video-player-component';
+import { AppRoute } from '../../const';
 
 type FilmCardType = {
   id: number;
@@ -12,8 +13,8 @@ type FilmCardType = {
 }
 
 function FilmCard({ id, name, previewImage, srcVideo }: FilmCardType): JSX.Element {
-  const dispatch = useAppDispatch();
   const [activeCard, setIsPointed] = useState(false);
+  const dispatch = useAppDispatch();
 
   return (
     <article className="small-film-card catalog__films-card"
@@ -24,7 +25,7 @@ function FilmCard({ id, name, previewImage, srcVideo }: FilmCardType): JSX.Eleme
           <img src={ previewImage } alt={ name } width="280" height="175"/> }
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/${ id }`} onClick={() => { dispatch(resetMainScreen()); }}>
+        <Link className="small-film-card__link" to={ `${ AppRoute.Film }/${ id }` } onClick={ () => { dispatch(resetMainScreen()); } }>
           { name }
         </Link>
       </h3>
