@@ -27,32 +27,20 @@ function App(): JSX.Element {
   return (
     <HistoryRouter history={ browserHistory }>
       <Routes>
-        <Route
-          path = { AppRoute.Main }
-          element = { <WelcomeScreen /> }
-        />
-        <Route
-          path = { AppRoute.SignIn }
-          element = { <SignIn /> }
-        />
-        <Route
-          path = { AppRoute.MyList }
+        <Route path = { AppRoute.Main } element = { <WelcomeScreen /> } />
+        <Route path = { AppRoute.SignIn } element = { <SignIn /> } />
+        <Route path = { AppRoute.MyList }
           element={
-            <PrivateRoute
-              authorizationStatus={ authorizationStatus }
-            >
+            <PrivateRoute authorizationStatus={ authorizationStatus } >
               <MyList />
             </PrivateRoute>
           }
         />
         <Route path={AppRoute.Film}>
-          <Route
-            path={':id'}
-            element={<Film />}
-          />
+          <Route path={ ':id' } element={ <Film /> } />
         </Route>
         <Route
-          path={`/films/:id${ AppRoute.AddReview }`}
+          path={ `/films/:id${ AppRoute.AddReview }` }
           element={
             <PrivateRoute
               authorizationStatus={ authorizationStatus }
@@ -61,14 +49,8 @@ function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route
-          path = { AppRoute.Player }
-          element = { <Player /> }
-        />
-        <Route
-          path = { '*' }
-          element = { <Error /> }
-        />
+        <Route path = { AppRoute.Player } element = { <Player /> } />
+        <Route path = { '*' } element = { <Error /> } />
       </Routes>
     </HistoryRouter>
   );

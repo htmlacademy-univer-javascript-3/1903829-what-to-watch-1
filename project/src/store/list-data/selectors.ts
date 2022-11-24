@@ -8,5 +8,6 @@ const getFilteredFilms = (state: State): TypeFilm[] => state[NameSpace.WelcomeSc
 const getCountCard = (state: State): number => state[NameSpace.WelcomeScreen].countShowCard;
 const getLoadedDataStatus = (state: State): boolean => state[NameSpace.WelcomeScreen].isDataLoaded;
 const getCurrentGenre = (state: State): string => state[NameSpace.WelcomeScreen].genre;
+const getFavoriteCount = (state: State): number => state[NameSpace.WelcomeScreen].favoriteCount;
 
-export { getFilms, getFilm, getFilteredFilms, getCountCard, getLoadedDataStatus, getCurrentGenre };
+export { getFilms, getFilm, getFilteredFilms, getCountCard, getLoadedDataStatus, getCurrentGenre, getFavoriteCount };

@@ -1,15 +1,34 @@
 import { Logo } from '../logo/logo';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/list-data/selectors';
-// import { getAuthorizationStatus } from '../../store/user-processes/selectors';
-// import { useAppDispatch } from '../../hooks';
+import { getFilm, getFavoriteCount } from '../../store/list-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { AuthorizationStatus } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { setFavoriteCount } from '../../store/list-data/list-data';
+import { changeFilmStatusToView } from '../../store/api-actions';
+import { StatusFilm } from '../../types/status';
 
 function WelcomeScreenComponent(): JSX.Element {
   const film = useAppSelector(getFilm);
-  // const authStatus = useAppSelector(getAuthorizationStatus);
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const favoriteCount = useAppSelector(getFavoriteCount);
+  const dispatch = useAppDispatch();
 
-  // const dispatch = useAppDispatch();
+  const onAddFavoriteClick = () => {
+    const filmStatus: StatusFilm = {
+      filmId: film?.id || NaN,
+      status: film?.isFavorite ? 0 : 1
+    };
+
+    dispatch(changeFilmStatusToView(filmStatus));
+
+    if (film?.isFavorite) {
+      dispatch(setFavoriteCount(favoriteCount - 1));
+    } else {
+      dispatch(setFavoriteCount(favoriteCount + 1));
+    }
+  };
 
   return (
     <section className="film-card">
@@ -45,13 +64,23 @@ function WelcomeScreenComponent(): JSX.Element {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">9</span>
-              </button>
+              {
+                authStatus === AuthorizationStatus.Auth &&
+                <button
+                  className="btn btn--list film-card__button"
+                  type="button"
+                  onClick={ onAddFavoriteClick }
+                >
+                  {
+                    film?.isFavorite ? <span>✓</span> :
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                  }
+                  <span>My list</span>
+                  <span className="film-card__count">{ favoriteCount }</span>
+                </button>
+              }
             </div>
           </div>
         </div>
