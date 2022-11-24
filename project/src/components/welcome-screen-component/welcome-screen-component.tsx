@@ -15,7 +15,7 @@ function WelcomeScreenComponent(): JSX.Element {
   const favoriteCount = useAppSelector(getFavoriteCount);
   const dispatch = useAppDispatch();
 
-  const onAddFavoriteClick = () => {
+  const onFavoriteClick = () => {
     const filmStatus: StatusFilm = {
       filmId: film?.id || NaN,
       status: film?.isFavorite ? 0 : 1
@@ -69,7 +69,7 @@ function WelcomeScreenComponent(): JSX.Element {
                 <button
                   className="btn btn--list film-card__button"
                   type="button"
-                  onClick={ onAddFavoriteClick }
+                  onClick={ onFavoriteClick }
                 >
                   {
                     film?.isFavorite ? <span>✓</span> :

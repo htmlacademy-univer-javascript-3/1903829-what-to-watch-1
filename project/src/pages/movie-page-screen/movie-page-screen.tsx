@@ -6,7 +6,7 @@ import { Logo, LogoLight } from '../../components/logo/logo';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 // import LoadingScreen from '../loading-screen/loading-screen';
-import { getFilm } from '../../store/list-data/selectors';
+import { getFavoriteCount, getFilm } from '../../store/list-data/selectors';
 // import { getIsFounded, getIsLoaded } from '../../store/film-data/selectors';
 import { getFilmListMore } from '../../store/film-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
@@ -15,6 +15,9 @@ import { changeFilmTab } from '../../store/film-data/film-data';
 import { AppRoute } from '../../const';
 import { fetchFilmByID, fetchReviewsByID } from '../../store/api-actions';
 import MoreFilmComponent from '../../components/more-film-component/more-film-component';
+import { StatusFilm } from '../../types/status';
+import { setFavoriteCount } from '../../store/list-data/list-data';
+import { changeFilmStatusToView } from '../../store/api-actions';
 
 function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -22,6 +25,7 @@ function MoviePage(): JSX.Element {
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const filmListMore = useAppSelector(getFilmListMore);
+  const favoriteCount = useAppSelector(getFavoriteCount);
 
   // const isLoaded = useAppSelector(getIsLoaded);
   // const isFounded = useAppSelector(getIsFounded);
@@ -41,6 +45,18 @@ function MoviePage(): JSX.Element {
   // if (!isLoaded) {
   //   return <LoadingScreen />;
   // }
+
+  const onFavoriteClick = () => {
+    const filmStatus: StatusFilm = {
+      filmId: film?.id || NaN,
+      status: film?.isFavorite ? 0 : 1
+    };
+
+    dispatch(changeFilmStatusToView(filmStatus));
+
+    if (film?.isFavorite) { dispatch(setFavoriteCount(favoriteCount - 1)); }
+    else { dispatch(setFavoriteCount(favoriteCount + 1)); }
+  };
 
   return (
     <>
@@ -78,6 +94,7 @@ function MoviePage(): JSX.Element {
                   <button
                     className="btn btn--list film-card__button"
                     type="button"
+                    onClick={ onFavoriteClick }
                   >
                     {
                       film?.isFavorite ? <span>✓</span> :
@@ -86,7 +103,7 @@ function MoviePage(): JSX.Element {
                         </svg>
                     }
                     <span>My list</span>
-                    <span className="film-card__count">3</span>
+                    <span className="film-card__count">{ favoriteCount }</span>
                   </button>
                 }
                 {
