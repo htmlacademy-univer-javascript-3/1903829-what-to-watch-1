@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Logo } from '../logo/logo';
 import SignOut from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
@@ -14,6 +15,11 @@ function WelcomeScreenComponent(): JSX.Element {
   const authStatus = useAppSelector(getAuthorizationStatus);
   const favoriteCount = useAppSelector(getFavoriteCount);
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+  const onClickPlay = () => {
+    navigate(`/player/${ film?.id }`);
+  };
 
   const onFavoriteClick = () => {
     const filmStatus: StatusFilm = {
@@ -58,7 +64,9 @@ function WelcomeScreenComponent(): JSX.Element {
             </p>
 
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
+              <button className="btn btn--play film-card__button" type="button"
+                onClick={ onClickPlay }
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>

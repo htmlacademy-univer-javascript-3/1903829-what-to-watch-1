@@ -18,15 +18,15 @@ import MoreFilmComponent from '../../components/more-film-component/more-film-co
 import { StatusFilm } from '../../types/status';
 import { setFavoriteCount } from '../../store/list-data/list-data';
 import { changeFilmStatusToView } from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
 
 function MoviePage(): JSX.Element {
-  const dispatch = useAppDispatch();
   const id = Number(useParams().id);
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const filmListMore = useAppSelector(getFilmListMore);
   const favoriteCount = useAppSelector(getFavoriteCount);
-
+  const dispatch = useAppDispatch();
   // const isLoaded = useAppSelector(getIsLoaded);
   // const isFounded = useAppSelector(getIsFounded);
 
@@ -58,6 +58,11 @@ function MoviePage(): JSX.Element {
     else { dispatch(setFavoriteCount(favoriteCount + 1)); }
   };
 
+  const navigate = useNavigate();
+  const onClickPlay = () => {
+    navigate(`/player/${ film?.id }`);
+  };
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -83,7 +88,7 @@ function MoviePage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={ onClickPlay }>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -128,7 +133,8 @@ function MoviePage(): JSX.Element {
       </section>
 
       <div className="page-content">
-        <MoreFilmComponent filmList={ filmListMore }/>
+        { filmListMore && (
+          <MoreFilmComponent filmList={ filmListMore }/>)}
 
         <footer className="page-footer">
           <LogoLight />
