@@ -1,8 +1,8 @@
 import { useState, MouseEvent } from 'react';
 import TypeFilm from '../../types/film-type';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenreFilm } from '../../store/reducer';
-import { getFilms } from '../../store/app-process/selectors';
+import { changeGenreFilm } from '../../store/list-data/list-data';
+import { getFilms } from '../../store/list-data/selectors';
 
 const getAllGenres = (filmsList: TypeFilm[]) => (
   [...new Set(['All genres', ...filmsList.map((film) => film.genre)])]

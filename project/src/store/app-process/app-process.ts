@@ -1,4 +1,4 @@
-import { createSlice, createAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 
 const initialState: {error: string | null} = {
@@ -16,5 +16,3 @@ export const appProcess = createSlice({
 });
 
 export const { setError } = appProcess.actions;
-
-export const redirectToRoute = createAction<string>('app/redirectToRoute');

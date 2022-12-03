@@ -1,28 +1,67 @@
-//import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { AuthorizationStatus } from '../../const';
-// import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Logo, LogoLight } from '../../components/logo/logo';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOut from '../../components/sign-out-component/sign-out-component';
-import LoadingScreen from '../loading-screen/loading-screen';
-import { getFilm, getReviews, getIsLoaded } from '../../store/app-process/selectors';
+// import LoadingScreen from '../loading-screen/loading-screen';
+import { getFavoriteCount, getFilm } from '../../store/list-data/selectors';
+// import { getIsFounded, getIsLoaded } from '../../store/film-data/selectors';
+import { getFilmListMore } from '../../store/film-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { setDataLoadedStatus } from '../../store/list-data/list-data';
+import { changeFilmTab } from '../../store/film-data/film-data';
+import { AppRoute } from '../../const';
+import { fetchFilmByID, fetchReviewsByID } from '../../store/api-actions';
+import MoreFilmComponent from '../../components/more-film-component/more-film-component';
+import { StatusFilm } from '../../types/status';
+import { setFavoriteCount } from '../../store/list-data/list-data';
+import { changeFilmStatusToView } from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
 
 function MoviePage(): JSX.Element {
-  //const dispatch = useAppDispatch();
-  //const [chooseTab, setChooseTab] = useState<string>('Overview');
-
   const id = Number(useParams().id);
   const film = useAppSelector(getFilm);
-  const reviews = useAppSelector(getReviews);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const filmListMore = useAppSelector(getFilmListMore);
+  const favoriteCount = useAppSelector(getFavoriteCount);
+  const dispatch = useAppDispatch();
+  // const isLoaded = useAppSelector(getIsLoaded);
+  // const isFounded = useAppSelector(getIsFounded);
 
-  const isLoaded = useAppSelector(getIsLoaded);
-  if (!isLoaded) {
-    return <LoadingScreen />;
-  }
+  useEffect(() => {
+    dispatch(setDataLoadedStatus(true));
+    dispatch(changeFilmTab('Overview'));
+    dispatch(fetchFilmByID(id.toString()));
+    dispatch(fetchReviewsByID(id.toString()));
+    dispatch(setDataLoadedStatus(false));
+  }, [id, authorizationStatus, dispatch]);
+
+  // if (!isFounded) {
+  //   return <LoadingScreen />;
+  // }
+
+  // if (!isLoaded) {
+  //   return <LoadingScreen />;
+  // }
+
+  const onFavoriteClick = () => {
+    const filmStatus: StatusFilm = {
+      filmId: film?.id || NaN,
+      status: film?.isFavorite ? 0 : 1
+    };
+
+    dispatch(changeFilmStatusToView(filmStatus));
+
+    if (film?.isFavorite) { dispatch(setFavoriteCount(favoriteCount - 1)); }
+    else { dispatch(setFavoriteCount(favoriteCount + 1)); }
+  };
+
+  const navigate = useNavigate();
+  const onClickPlay = () => {
+    navigate(`/player/${ film?.id }`);
+  };
 
   return (
     <>
@@ -49,22 +88,37 @@ function MoviePage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={ onClickPlay }>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
-                  <Link to={`/player/${ id }`}><span>Play</span></Link>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
+                  <span>Play</span>
                 </button>
                 {
                   authorizationStatus === AuthorizationStatus.Auth &&
-                  <Link className="btn film-card__button" to={`/films/:${ id }/review`}>Add review</Link>
+                  <button
+                    className="btn btn--list film-card__button"
+                    type="button"
+                    onClick={ onFavoriteClick }
+                  >
+                    {
+                      film?.isFavorite ? <span>✓</span> :
+                        <svg viewBox="0 0 19 20" width="19" height="20">
+                          <use xlinkHref="#add"></use>
+                        </svg>
+                    }
+                    <span>My list</span>
+                    <span className="film-card__count">{ favoriteCount }</span>
+                  </button>
+                }
+                {
+                  authorizationStatus === AuthorizationStatus.Auth &&
+                  <Link
+                    to={`${AppRoute.Film}/${id}${AppRoute.AddReview}`}
+                    className="btn film-card__button"
+                  >
+                    Add review
+                  </Link>
                 }
               </div>
             </div>
@@ -73,27 +127,13 @@ function MoviePage(): JSX.Element {
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
-            <div className="film-card__poster film-card__poster--big">
-              <img src={ film?.posterImage } alt={ film?.name } width="218" height="327" />
-            </div>
-
-            <TabsComponent
-              film={ film }
-              reviews={ reviews }
-            />
-
+            <TabsComponent />
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            {/* тут похожие */}
-          </div>
-        </section>
+        <MoreFilmComponent filmList={ filmListMore }/>
 
         <footer className="page-footer">
           <LogoLight />

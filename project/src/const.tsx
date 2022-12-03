@@ -5,10 +5,9 @@ enum AppRoute {
   Main = '/',
   SignIn = '/login',
   MyList = '/mylist',
-  Film = '/films/:id',
+  Film = '/films',
   AddReview = '/review',
   Player = '/player/:id',
-  Root = '/',
 }
 
 enum AuthorizationStatus {
@@ -23,13 +22,15 @@ enum APIRoute {
   Logout = '/logout',
   Favorite = '/favorite',
   Reviews = '/comments',
+  Promo = '/promo',
+  Similar = '/similar',
 }
 
 enum NameSpace {
-  User = 'USER',
-  WelcomeScreen = 'MAIN',
-  FilmScreen = 'FILM',
-  App ='APP'
+    User = 'USER',
+    WelcomeScreen = 'MAIN',
+    FilmScreen = 'FILM',
+    App = 'APP',
 }
 
 export { AppRoute, AuthorizationStatus, APIRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };

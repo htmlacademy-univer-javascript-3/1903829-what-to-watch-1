@@ -1,19 +1,21 @@
 import { Logo, LogoLight } from '../../components/logo/logo';
-import FavoriteFilms from '../../types/favorite-films';
 import FilmCardFavourite from '../../components/favourite-film-card/favourite-film-card';
 import SignOut from '../../components/sign-out-component/sign-out-component';
+import { useAppSelector } from '../../hooks';
+import { getFavoriteFilms } from '../../store/list-data/selectors';
+// import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 
-type MyListProps = {
-  myList: FavoriteFilms[],
-}
+function MyList(): JSX.Element {
+  const favoriteFilm = useAppSelector(getFavoriteFilms);
+  // const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  // const dispatch = useAppDispatch();
 
-function MyList({ myList }: MyListProps): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <Logo />
 
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{ favoriteFilm.length }</span></h1>
         <SignOut />
       </header>
 
@@ -21,7 +23,7 @@ function MyList({ myList }: MyListProps): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          { myList.map((film) => <FilmCardFavourite key={ film.id } name={ film.name } previewImage={ film.previewImage }/>) }
+          { favoriteFilm.map((film) => <FilmCardFavourite key={ film.id } id={ film.id } name={ film.name } previewImage={ film.previewImage }/>) }
         </div>
       </section>
 
