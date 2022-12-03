@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { LogoLight } from '../../components/logo/logo';
+import { LogoLightComponent } from '../../components/logo-component/logo-component';
 import WelcomeScreenComponent from '../../components/welcome-screen-component/welcome-screen-component';
-import MovieList from '../../components/movie-list/movie-list';
+import MovieListComponent from '../../components/movie-list-component/movie-list-component';
 import { getAuthorizationStatus } from '../../store/user-processes/selectors';
 import { AuthorizationStatus } from '../../const';
 import { fetchFavoriteFilmsAction } from '../../store/api-actions';
@@ -22,10 +22,10 @@ function WelcomeScreen(): JSX.Element {
       <WelcomeScreenComponent />
 
       <div className="page-content">
-        <MovieList />
+        <MovieListComponent />
 
         <footer className="page-footer">
-          <LogoLight />
+          <LogoLightComponent />
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>

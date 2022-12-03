@@ -4,7 +4,7 @@ import { logoutAction } from '../../store/api-actions';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { getAuthorizationStatus, getAvatarUrl } from '../../store/user-processes/selectors';
 
-function SignOut(): JSX.Element {
+function SignOutComponent(): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const avatar = useAppSelector(getAvatarUrl);
@@ -13,10 +13,7 @@ function SignOut(): JSX.Element {
     return (
       <ul className="user-block">
         <li className="user-block__item">
-          <Link
-            className="user-block__link"
-            to={ `${ AppRoute.SignIn }` }
-          >
+          <Link className="user-block__link" to={ `${ AppRoute.SignIn }` }>
             Sign in
           </Link>
         </li>
@@ -45,4 +42,4 @@ function SignOut(): JSX.Element {
   );
 }
 
-export default SignOut;
+export default SignOutComponent;

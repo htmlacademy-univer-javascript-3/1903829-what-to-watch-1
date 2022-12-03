@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import App from './components/app/app';
-import ErrorMessage from './components/error-message/error-message';
+import ErrorMessageComponent from './components/error-message-component/error-message-component';
 import { checkAuthAction, fetchFilmsAction, fetchOneFilmAction } from './store/api-actions';
-// import HistoryRouter from './components/history-route/history-route';
-// import browserHistory from './browser-history';
 
 store.dispatch(fetchFilmsAction());
 store.dispatch(fetchOneFilmAction());
@@ -19,10 +17,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={ store }>
-      {/* <HistoryRouter history={ browserHistory }> */}
-      <ErrorMessage />
+      <ErrorMessageComponent />
       <App />
-      {/* </HistoryRouter> */}
     </Provider>
   </React.StrictMode>,
 );

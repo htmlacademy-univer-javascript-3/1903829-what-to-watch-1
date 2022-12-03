@@ -1,4 +1,4 @@
-import { Logo, LogoLight } from '../../components/logo/logo';
+import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
 import { useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -43,7 +43,7 @@ function SignIn(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <Logo />
+        <LogoComponent />
 
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
@@ -96,7 +96,7 @@ function SignIn(): JSX.Element {
       </div>
 
       <footer className="page-footer">
-        <LogoLight />
+        <LogoLightComponent />
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
