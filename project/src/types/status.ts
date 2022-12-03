@@ -1,6 +1,6 @@
-type Favorite = 1 | 0;
-
-export type StatusFilm = {
+type StatusFilm = {
     filmId: number,
-    status: Favorite,
-  }
+    status: 1 | 0,
+}
+
+export default StatusFilm;

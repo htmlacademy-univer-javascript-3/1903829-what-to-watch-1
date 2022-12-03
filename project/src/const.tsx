@@ -1,5 +1,6 @@
 const TIMEOUT_SHOW_ERROR = 2000;
 const CARDS_PER_STEP = 8;
+const AUTH_TOKEN_KEY_NAME = 'wtw-token';
 
 enum AppRoute {
   Main = '/',
@@ -33,4 +34,4 @@ enum NameSpace {
     App = 'APP',
 }
 
-export { AppRoute, AuthorizationStatus, ApiRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP };
+export { AppRoute, AuthorizationStatus, ApiRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP, AUTH_TOKEN_KEY_NAME };

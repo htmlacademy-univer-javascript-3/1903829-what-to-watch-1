@@ -2,7 +2,7 @@ import { LogoComponent } from '../../components/logo-component/logo-component';
 import AddReviewComponent from '../../components/add-review-component/add-review-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/list-data/selectors';
+import { getFilm } from '../../store/selectors';
 
 function AddReview(): JSX.Element {
   const film = useAppSelector(getFilm);

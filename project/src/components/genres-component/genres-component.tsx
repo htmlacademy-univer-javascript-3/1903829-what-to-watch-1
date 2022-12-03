@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenreFilm } from '../../store/list-data/list-data';
-import { getFilms } from '../../store/list-data/selectors';
+import { changeGenreFilm } from '../../store/list-data';
+import { getFilms } from '../../store/selectors';
 import { getAllGenres } from '../../utils/functions';
 
 function GenresComponent(): JSX.Element {

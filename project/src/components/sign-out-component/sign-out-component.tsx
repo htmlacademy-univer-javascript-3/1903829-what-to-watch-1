@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { AuthorizationStatus, AppRoute } from '../../const';
-import { getAuthorizationStatus, getAvatarUrl } from '../../store/user-processes/selectors';
+import { getAuthorizationStatus, getAvatarUrl } from '../../store/selectors';
 
 function SignOutComponent(): JSX.Element {
   const dispatch = useAppDispatch();

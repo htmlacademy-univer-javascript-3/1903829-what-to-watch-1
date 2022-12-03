@@ -1,21 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CARDS_PER_STEP, NameSpace } from '../../const';
-import TypeFilm from '../../types/film-type';
-import { SortGenreFilm } from '../../utils/functions';
-import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, fetchOneFilmAction } from '../api-actions';
+import { CARDS_PER_STEP, NameSpace } from '../const';
+import InStateListData from '../types/list-data';
+import { SortGenreFilm } from '../utils/functions';
+import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, fetchOneFilmAction } from './api-actions';
 
-type InitialState = {
-  genre: string,
-  filmsList: TypeFilm[];
-  countShowCard: number,
-  isDataLoaded: boolean,
-  film: TypeFilm | null,
-  filmsListFiltered: TypeFilm[],
-  favoriteListFilms: TypeFilm[],
-  favoriteCount: number,
-}
-
-const initialState: InitialState = {
+const initialState: InStateListData = {
   genre: 'All genres',
   filmsList: [],
   countShowCard: 0,
@@ -26,7 +15,7 @@ const initialState: InitialState = {
   favoriteCount: 0,
 };
 
-export const MainData = createSlice({
+export const mainData = createSlice({
   name: NameSpace.WelcomeScreen,
   initialState,
   reducers: {
@@ -92,4 +81,4 @@ export const {
   resetCardCount,
   setDataLoadedStatus,
   setFavoriteCount
-} = MainData.actions;
+} = mainData.actions;

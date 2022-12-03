@@ -1,20 +1,19 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state.js';
+import { AppDispatch, State } from '../types/state-type.js';
 import TypeFilm from '../types/film-type.js';
 import Reviews from '../types/reviews.js';
 import { ApiRoute, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
-import { AuthData } from '../types/auth-data';
-import { UserData } from '../types/user-data';
-import { store } from './index';
-import FavoriteFilms from '../types/favorite-films';
-import { StatusFilm } from '../types/status';
-import { setError } from './app-process/app-process';
+import AuthData from '../types/auth-data';
+import UserData from '../types/user-data';
+import store from './index';
+import StatusFilm from '../types/status';
+import { setError } from './app-process';
 import { createAction } from '@reduxjs/toolkit';
 import { dropToken } from '../services/token';
 import { dropAvatarURL } from '../services/avatar';
 
-export const fetchFilmsAction = createAsyncThunk<TypeFilm[], undefined, {
+const fetchFilmsAction = createAsyncThunk<TypeFilm[], undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -27,7 +26,7 @@ export const fetchFilmsAction = createAsyncThunk<TypeFilm[], undefined, {
   },
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -38,7 +37,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const loginAction = createAsyncThunk<{ token: string, avatarUrl: string, userId: number }, AuthData, {
+const loginAction = createAsyncThunk<{ token: string, avatarUrl: string, userId: number }, AuthData, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -52,7 +51,7 @@ export const loginAction = createAsyncThunk<{ token: string, avatarUrl: string, 
 
 const redirectToRoute = createAction<string>('app/redirectToRoute');
 
-export const logoutAction = createAsyncThunk<void, undefined, {
+const logoutAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -66,7 +65,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const clearErrorAction = createAsyncThunk(
+const clearErrorAction = createAsyncThunk(
   'app/clearError',
   () => {
     setTimeout(
@@ -76,20 +75,20 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
-export const fetchFavoriteFilmsAction = createAsyncThunk<FavoriteFilms[], undefined, {
+const fetchFavoriteFilmsAction = createAsyncThunk<TypeFilm[], undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchFavoriteFilmsAction',
   async (_arg, { dispatch, extra: api}) => {
-    const {data} = await api.get<FavoriteFilms[]>(ApiRoute.Favorite);
+    const {data} = await api.get<TypeFilm[]>(ApiRoute.Favorite);
 
     return data;
   },
 );
 
-export const fetchFilmByID = createAsyncThunk<TypeFilm | null, string, {
+const fetchFilmByID = createAsyncThunk<TypeFilm | null, string, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -102,7 +101,7 @@ export const fetchFilmByID = createAsyncThunk<TypeFilm | null, string, {
   },
 );
 
-export const fetchReviewsByID = createAsyncThunk<Reviews, string, {
+const fetchReviewsByID = createAsyncThunk<Reviews, string, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -115,7 +114,7 @@ export const fetchReviewsByID = createAsyncThunk<Reviews, string, {
   },
 );
 
-export const changeFilmStatusToView = createAsyncThunk<TypeFilm, StatusFilm, {
+const changeFilmStatusToView = createAsyncThunk<TypeFilm, StatusFilm, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -141,7 +140,7 @@ export const fetchOneFilmAction = createAsyncThunk<TypeFilm, undefined, {
   },
 );
 
-export const fetchMoreFilmByID = createAsyncThunk<TypeFilm[], string, {
+const fetchMoreFilmByID = createAsyncThunk<TypeFilm[], string, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -160,7 +159,7 @@ type UserComment = {
   comment: string
 }
 
-export const postComment = createAsyncThunk<void, UserComment, {
+const postComment = createAsyncThunk<void, UserComment, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -171,3 +170,6 @@ export const postComment = createAsyncThunk<void, UserComment, {
     dispatch(redirectToRoute(`${ ApiRoute.Films }/${ filmId }`));
   },
 );
+
+export { fetchFilmsAction, checkAuthAction, loginAction, logoutAction, clearErrorAction, fetchFavoriteFilmsAction,
+  fetchFilmByID, fetchReviewsByID, changeFilmStatusToView, fetchMoreFilmByID, postComment, };

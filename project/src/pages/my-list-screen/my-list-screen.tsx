@@ -1,8 +1,8 @@
+import { useAppSelector } from '../../hooks';
 import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
 import FilmCardFavouriteComponent from '../../components/favourite-film-card-component/favourite-film-card-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
-import { useAppSelector } from '../../hooks';
-import { getFavoriteFilms } from '../../store/list-data/selectors';
+import { getFavoriteFilms } from '../../store/selectors';
 
 function MyList(): JSX.Element {
   const favoriteFilm = useAppSelector(getFavoriteFilms);

@@ -10,7 +10,7 @@ import Error from '../error-component/error-component';
 import PrivateRoute from '../../components/private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { getAuthorizationStatus } from '../../store/selectors';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 

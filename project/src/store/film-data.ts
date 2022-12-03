@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const';
-import { FilmData } from '../../types/FilmData';
-import { fetchFilmByID, fetchReviewsByID, changeFilmStatusToView, fetchMoreFilmByID } from '../api-actions';
+import { NameSpace } from '../const';
+import FilmData from '../types/film-data';
+import { fetchFilmByID, fetchReviewsByID, changeFilmStatusToView, fetchMoreFilmByID } from './api-actions';
 
 const initialState: FilmData = {
   film: null,
@@ -16,12 +16,8 @@ export const filmData = createSlice({
   name: NameSpace.FilmScreen,
   initialState,
   reducers: {
-    changeFilmTab: (state, action) => {
-      state.filmTab = action.payload;
-    },
-    resetFilmTab: (state) => {
-      state.filmTab = 'Overview';
-    }
+    changeFilmTab: (state, action) => { state.filmTab = action.payload; },
+    resetFilmTab: (state) => { state.filmTab = 'Overview'; }
   },
   extraReducers(builder) {
     builder
@@ -30,7 +26,6 @@ export const filmData = createSlice({
       })
       .addCase(fetchFilmByID.fulfilled, (state, action) => {
         state.film = action.payload;
-
         state.isFounded = true;
         state.isLoaded = false;
       })

@@ -2,8 +2,8 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import MoviePageComponent from '../movie-page-component/movie-page-component';
 import AddDetails from '../add-details-component/add-details-component';
 import ReviewsComponent from '../reviews-component/reviews-component';
-import { changeFilmTab } from '../../store/film-data/film-data';
-import { getChooseTab, getReviews, getFilm } from '../../store/film-data/selectors';
+import { changeFilmTab } from '../../store/film-data';
+import { getChooseTab, getReviews, getFilm } from '../../store/selectors';
 
 function TabsComponent(): JSX.Element {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import TypeFilm from './film-type';
 import Reviews from './reviews';
 
-export type FilmData = {
+type FilmData = {
   film: TypeFilm | null,
   filmTab: string,
   comments: Reviews,
@@ -9,3 +9,5 @@ export type FilmData = {
   isFounded: boolean | null,
   moreFilm: TypeFilm[],
 }
+
+export default FilmData;

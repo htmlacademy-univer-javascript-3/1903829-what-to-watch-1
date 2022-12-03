@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { resetMainScreen } from '../../store/list-data/list-data';
+import { resetMainScreen } from '../../store/list-data';
 import VideoPlayerComponent from '../video-player-component/video-player-component';
 import { AppRoute } from '../../const';
 

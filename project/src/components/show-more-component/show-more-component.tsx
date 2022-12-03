@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../hooks';
-import { increaseCardCount } from '../../store/list-data/list-data';
+import { increaseCardCount } from '../../store/list-data';
 
 type ShowMoreProps = {
   flagCountCard: boolean;

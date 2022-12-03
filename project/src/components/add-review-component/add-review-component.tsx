@@ -1,6 +1,6 @@
 import { ChangeEvent, useState, Fragment, FormEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { getFilm } from '../../store/list-data/selectors';
+import { getFilm } from '../../store/selectors';
 import { postComment } from '../../store/api-actions';
 import UserComment from '../../types/user-comment';
 

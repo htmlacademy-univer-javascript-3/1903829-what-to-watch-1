@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { LogoComponent } from '../logo-component/logo-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm, getFavoriteCount } from '../../store/list-data/selectors';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { getFilm, getFavoriteCount } from '../../store/selectors';
+import { getAuthorizationStatus } from '../../store/selectors';
 import { AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks';
-import { setFavoriteCount } from '../../store/list-data/list-data';
+import { setFavoriteCount } from '../../store/list-data';
 import { changeFilmStatusToView } from '../../store/api-actions';
-import { StatusFilm } from '../../types/status';
+import StatusFilm from '../../types/status';
 
 function WelcomeScreenComponent(): JSX.Element {
   const film = useAppSelector(getFilm);

@@ -3,7 +3,7 @@ import FilmCardComponent from '../film-card-component/film-card-component';
 import GenresComponent from '../genres-component/genres-component';
 import ShowMoreComponent from '../show-more-component/show-more-component';
 import { useAppSelector } from '../../hooks';
-import { getCountCard, getFilteredFilms } from '../../store/list-data/selectors';
+import { getCountCard, getFilteredFilms } from '../../store/selectors';
 
 function MovieListComponent(): JSX.Element {
   const countCard = useAppSelector(getCountCard);

@@ -1,7 +1,7 @@
 import { useAppDispatch } from '../../hooks';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { resetMainScreen } from '../../store/list-data/list-data';
+import { resetMainScreen } from '../../store/list-data';
 
 type FilmCardFavouriteTypeProps = {
   id: number;
