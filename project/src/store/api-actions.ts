@@ -153,3 +153,21 @@ export const fetchMoreFilmByID = createAsyncThunk<TypeFilm[], string, {
     return data;
   },
 );
+
+type UserComment = {
+  filmId: string,
+  rating: number,
+  comment: string
+}
+
+export const postComment = createAsyncThunk<void, UserComment, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/postCommentById',
+  async ({ comment, rating, filmId }, { dispatch, extra: api }) => {
+    await api.post<UserComment>(`${ APIRoute.Reviews }/${ filmId }`, { comment, rating });
+    dispatch(redirectToRoute(`${ APIRoute.Films }/${ filmId }`));
+  },
+);

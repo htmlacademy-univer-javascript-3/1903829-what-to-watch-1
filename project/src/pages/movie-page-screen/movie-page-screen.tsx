@@ -133,8 +133,7 @@ function MoviePage(): JSX.Element {
       </section>
 
       <div className="page-content">
-        { filmListMore && (
-          <MoreFilmComponent filmList={ filmListMore }/>)}
+        <MoreFilmComponent filmList={ filmListMore }/>
 
         <footer className="page-footer">
           <LogoLight />
