@@ -1,20 +1,16 @@
-import { Logo, LogoLight } from '../../components/logo/logo';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import AuthData from '../../types/auth-data';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
+import { getAuthorizationStatus } from '../../store/selectors';
 import { loginAction } from '../../store/api-actions';
-import { AuthData } from '../../types/auth-data';
-import { AppRoute } from '../../const';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
-import { useState } from 'react';
-import { AuthorizationStatus } from '../../const';
 
 function SignIn(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
 
   const onSubmit = (authData: AuthData) => {
@@ -43,7 +39,7 @@ function SignIn(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <Logo />
+        <LogoComponent />
 
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
@@ -83,10 +79,7 @@ function SignIn(): JSX.Element {
                 if (emailRef.current !== null && passwordRef.current !== null
                     && checkEmail(emailRef.current?.value)
                     && checkPassword(passwordRef.current?.value)) {
-                  onSubmit({
-                    email: emailRef.current.value,
-                    password: passwordRef.current.value,
-                  });
+                  onSubmit({ email: emailRef.current.value, password: passwordRef.current.value, });
                 }
               } }
             >Sign in
@@ -96,7 +89,7 @@ function SignIn(): JSX.Element {
       </div>
 
       <footer className="page-footer">
-        <LogoLight />
+        <LogoLightComponent />
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>

@@ -1,9 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import MoviePageComponent from '../movie-page-component/movie-page-component';
-import AddDetails from '../details-component/details-component';
-import ReviewsComponent from '../reviews/reviews';
-import { changeFilmTab } from '../../store/film-data/film-data';
-import { getChooseTab, getReviews, getFilm } from '../../store/film-data/selectors';
+import AddDetails from '../add-details-component/add-details-component';
+import ReviewsComponent from '../reviews-component/reviews-component';
+import { changeFilmTab } from '../../store/film-data';
+import { getChooseTab, getReviews, getFilm } from '../../store/selectors';
 
 function TabsComponent(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -51,12 +51,12 @@ function TabsComponent(): JSX.Element {
         </nav>
 
         { chooseTab === 'Overview' &&
-        <MoviePageComponent rating={ film?.rating } description={ film?.description } scoresCount={ film?.scoresCount }
+        <MoviePageComponent key={ film?.id } rating={ film?.rating } description={ film?.description } scoresCount={ film?.scoresCount }
           director={ film?.director } starring={ film?.starring }
         /> }
 
         { chooseTab === 'Details' &&
-        <AddDetails director={ film?.director } starring={ film?.starring } released={ film?.released } genre={ film?.genre }
+        <AddDetails key={ film?.id } director={ film?.director } released={ film?.released } genre={ film?.genre }
           runTime={ film?.runTime }
         /> }
 

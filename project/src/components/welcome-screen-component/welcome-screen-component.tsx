@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { Logo } from '../logo/logo';
-import SignOut from '../../components/sign-out-component/sign-out-component';
+import { LogoComponent } from '../logo-component/logo-component';
+import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm, getFavoriteCount } from '../../store/list-data/selectors';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { getFilm, getFavoriteCount } from '../../store/selectors';
+import { getAuthorizationStatus } from '../../store/selectors';
 import { AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks';
-import { setFavoriteCount } from '../../store/list-data/list-data';
+import { setFavoriteCount } from '../../store/list-data';
 import { changeFilmStatusToView } from '../../store/api-actions';
-import { StatusFilm } from '../../types/status';
+import StatusFilm from '../../types/status';
 
 function WelcomeScreenComponent(): JSX.Element {
   const film = useAppSelector(getFilm);
@@ -29,11 +29,8 @@ function WelcomeScreenComponent(): JSX.Element {
 
     dispatch(changeFilmStatusToView(filmStatus));
 
-    if (film?.isFavorite) {
-      dispatch(setFavoriteCount(favoriteCount - 1));
-    } else {
-      dispatch(setFavoriteCount(favoriteCount + 1));
-    }
+    if (film?.isFavorite) { dispatch(setFavoriteCount(favoriteCount - 1)); }
+    else { dispatch(setFavoriteCount(favoriteCount + 1)); }
   };
 
   return (
@@ -45,9 +42,9 @@ function WelcomeScreenComponent(): JSX.Element {
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header film-card__head">
-        <Logo />
+        <LogoComponent />
 
-        <SignOut />
+        <SignOutComponent />
       </header>
 
       <div className="film-card__wrap">

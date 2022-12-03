@@ -9,12 +9,8 @@ function VideoPlayerComponent({ src, srcImage }: VideoPlayerProps): JSX.Element 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(()=> {
-    if (videoRef.current === null) {
-      return;
-    }
-
+    if (videoRef.current === null) { return; }
     const delay: NodeJS.Timeout = setTimeout( () => videoRef.current?.play(), 1000 );
-
     return () => clearTimeout(delay);
   } );
 

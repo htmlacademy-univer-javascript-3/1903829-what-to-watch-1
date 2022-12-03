@@ -6,11 +6,11 @@ import MyList from '../../pages/my-list-screen/my-list-screen';
 import Film from '../../pages/movie-page-screen/movie-page-screen';
 import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
-import Error from '../error/error';
+import Error from '../error-component/error-component';
 import PrivateRoute from '../../components/private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
+import { getAuthorizationStatus } from '../../store/selectors';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
@@ -29,12 +29,11 @@ function App(): JSX.Element {
       <Routes>
         <Route path = { AppRoute.Main } element = { <WelcomeScreen /> } />
         <Route path = { AppRoute.SignIn } element = { <SignIn /> } />
-        <Route path = { AppRoute.MyList }
-          element={
-            <PrivateRoute authorizationStatus={ authorizationStatus } >
-              <MyList />
-            </PrivateRoute>
-          }
+        <Route path = { AppRoute.MyList } element={
+          <PrivateRoute authorizationStatus={ authorizationStatus } >
+            <MyList />
+          </PrivateRoute>
+        }
         />
         <Route path={AppRoute.Film}>
           <Route path={ ':id' } element={ <Film /> } />

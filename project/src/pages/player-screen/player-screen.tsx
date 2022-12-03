@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/list-data/selectors';
+import { getFilm } from '../../store/selectors';
 import { useRef, useState } from 'react';
 import { reformatTime } from '../../utils/functions';
 import { SyntheticEvent } from 'react';
@@ -11,8 +11,6 @@ function Player(): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progressValue, setProgressValue] = useState(0);
   const playerRef = useRef<HTMLVideoElement | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const videoRef: React.RefObject<any> = useRef();
   const playerMainRef = useRef<HTMLDivElement | null>(null);
   const [timeCode, setTimeCode] = useState(reformatTime(film?.runTime || 0, 0));
 

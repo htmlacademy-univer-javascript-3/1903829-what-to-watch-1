@@ -1,24 +1,21 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { AuthorizationStatus } from '../../const';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Logo, LogoLight } from '../../components/logo/logo';
+import StatusFilm from '../../types/status';
+import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
 import TabsComponent from '../../components/tabs-component/tabs-component';
-import SignOut from '../../components/sign-out-component/sign-out-component';
-// import LoadingScreen from '../loading-screen/loading-screen';
-import { getFavoriteCount, getFilm } from '../../store/list-data/selectors';
-// import { getIsFounded, getIsLoaded } from '../../store/film-data/selectors';
-import { getFilmListMore } from '../../store/film-data/selectors';
-import { getAuthorizationStatus } from '../../store/user-processes/selectors';
-import { setDataLoadedStatus } from '../../store/list-data/list-data';
-import { changeFilmTab } from '../../store/film-data/film-data';
-import { AppRoute } from '../../const';
+import SignOutComponent from '../../components/sign-out-component/sign-out-component';
+import FilmCardComponent from '../../components/film-card-component/film-card-component';
+import { getFavoriteCount, getFilm } from '../../store/selectors';
+import { getFilmListMore } from '../../store/selectors';
+import { getAuthorizationStatus } from '../../store/selectors';
+import { setDataLoadedStatus } from '../../store/list-data';
+import { changeFilmTab } from '../../store/film-data';
 import { fetchFilmByID, fetchReviewsByID } from '../../store/api-actions';
-import MoreFilmComponent from '../../components/more-film-component/more-film-component';
-import { StatusFilm } from '../../types/status';
-import { setFavoriteCount } from '../../store/list-data/list-data';
+import { setFavoriteCount } from '../../store/list-data';
 import { changeFilmStatusToView } from '../../store/api-actions';
-import { useNavigate } from 'react-router-dom';
+import { fetchMoreFilmByID } from '../../store/api-actions';
 
 function MoviePage(): JSX.Element {
   const id = Number(useParams().id);
@@ -27,8 +24,6 @@ function MoviePage(): JSX.Element {
   const filmListMore = useAppSelector(getFilmListMore);
   const favoriteCount = useAppSelector(getFavoriteCount);
   const dispatch = useAppDispatch();
-  // const isLoaded = useAppSelector(getIsLoaded);
-  // const isFounded = useAppSelector(getIsFounded);
 
   useEffect(() => {
     dispatch(setDataLoadedStatus(true));
@@ -36,15 +31,8 @@ function MoviePage(): JSX.Element {
     dispatch(fetchFilmByID(id.toString()));
     dispatch(fetchReviewsByID(id.toString()));
     dispatch(setDataLoadedStatus(false));
+    dispatch(fetchMoreFilmByID(id.toString()));
   }, [id, authorizationStatus, dispatch]);
-
-  // if (!isFounded) {
-  //   return <LoadingScreen />;
-  // }
-
-  // if (!isLoaded) {
-  //   return <LoadingScreen />;
-  // }
 
   const onFavoriteClick = () => {
     const filmStatus: StatusFilm = {
@@ -74,9 +62,9 @@ function MoviePage(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <Logo />
+            <LogoComponent />
 
-            <SignOut />
+            <SignOutComponent />
           </header>
 
           <div className="film-card__wrap">
@@ -133,10 +121,15 @@ function MoviePage(): JSX.Element {
       </section>
 
       <div className="page-content">
-        <MoreFilmComponent filmList={ filmListMore }/>
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+          <div className="catalog__films-list">
+            { filmListMore.map((movie) => (<FilmCardComponent key={ movie.id } id={ movie.id } name={ movie.name } previewImage={ movie.previewImage } srcVideo={ movie.videoLink }/>)) }
+          </div>
+        </section>
 
         <footer className="page-footer">
-          <LogoLight />
+          <LogoLightComponent />
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>

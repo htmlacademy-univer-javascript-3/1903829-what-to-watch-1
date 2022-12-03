@@ -1,8 +1,8 @@
-import { Logo } from '../../components/logo/logo';
+import { LogoComponent } from '../../components/logo-component/logo-component';
 import AddReviewComponent from '../../components/add-review-component/add-review-component';
-import SignOut from '../../components/sign-out-component/sign-out-component';
+import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/list-data/selectors';
+import { getFilm } from '../../store/selectors';
 
 function AddReview(): JSX.Element {
   const film = useAppSelector(getFilm);
@@ -17,7 +17,7 @@ function AddReview(): JSX.Element {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
-          <Logo />
+          <LogoComponent />
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -30,7 +30,7 @@ function AddReview(): JSX.Element {
             </ul>
           </nav>
 
-          <SignOut />
+          <SignOutComponent />
         </header>
 
         <div className="film-card__poster film-card__poster--small">
