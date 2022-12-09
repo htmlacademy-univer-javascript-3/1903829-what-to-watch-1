@@ -11,10 +11,14 @@ function TabsComponent(): JSX.Element {
   const reviews = useAppSelector(getReviews);
   const film = useAppSelector(getFilm);
 
+  if (!film) {
+    return <div className="film-card__desc"></div>;
+  }
+
   return (
     <>
       <div className="film-card__poster film-card__poster--big">
-        <img src={ film?.posterImage } alt={ film?.name } width="218" height="327" />
+        <img src={ film.posterImage } alt={ film.name } width="218" height="327" />
       </div>
 
       <div className="film-card__desc">
@@ -51,13 +55,13 @@ function TabsComponent(): JSX.Element {
         </nav>
 
         { chooseTab === 'Overview' &&
-        <MoviePageComponent key={ film?.id } rating={ film?.rating } description={ film?.description } scoresCount={ film?.scoresCount }
-          director={ film?.director } starring={ film?.starring }
+        <MoviePageComponent key={ film.id } rating={ film.rating } description={ film.description } scoresCount={ film.scoresCount }
+          director={ film.director } starring={ film.starring }
         /> }
 
         { chooseTab === 'Details' &&
-        <AddDetails key={ film?.id } director={ film?.director } released={ film?.released } genre={ film?.genre }
-          runTime={ film?.runTime }
+        <AddDetails key={ film.id } director={ film.director } released={ film.released }
+          starring={ film.starring } genre={ film.genre } runTime={ film.runTime }
         /> }
 
         { chooseTab === 'Reviews' &&

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
-//import FilmCardFavouriteComponent from '../../components/favourite-film-card-component/favourite-film-card-component';
 import FilmCardComponent from '../../components/film-card-component/film-card-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import { getFavoriteFilms, getAuthorizationStatus } from '../../store/selectors';

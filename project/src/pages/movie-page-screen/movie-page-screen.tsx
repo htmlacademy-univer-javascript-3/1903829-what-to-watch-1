@@ -63,7 +63,7 @@ function MoviePageScreen(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <FilmCardButtons film={ film } favoriteType={ 'PROMO' }
+                <FilmCardButtons film={ film } favoriteType={ 'FILM' }
                   favoriteCount={ favoriteCount } authStatus={ authorizationStatus }
                 />
                 {

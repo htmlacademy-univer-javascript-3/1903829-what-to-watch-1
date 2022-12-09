@@ -1,11 +1,11 @@
 import { LogoComponent } from '../logo-component/logo-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import { useAppSelector } from '../../hooks';
-import { getFilm, getFavoriteCount, getAuthorizationStatus } from '../../store/selectors';
+import { getFavoriteCount, getAuthorizationStatus, getPromo } from '../../store/selectors';
 import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 
 function WelcomeScreenComponent(): JSX.Element {
-  const film = useAppSelector(getFilm);
+  const film = useAppSelector(getPromo);
   const authStatus = useAppSelector(getAuthorizationStatus);
   const favoriteCount = useAppSelector(getFavoriteCount);
 

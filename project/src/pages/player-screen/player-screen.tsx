@@ -47,7 +47,7 @@ function Player(): JSX.Element {
 
   return (
     <div className="player" ref={ playerMainRef }>
-      <video src={ film?.videoLink } className="player__video" poster={ film?.posterImage }
+      <video src={ film?.videoLink } className="player__video" poster={ film?.previewImage }
         onTimeUpdate={ updateTime } ref={ playerRef }
       >
       </video>
