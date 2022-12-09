@@ -6,10 +6,11 @@ import { LogoComponent, LogoLightComponent } from '../../components/logo-compone
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import FilmCardComponent from '../../components/film-card-component/film-card-component';
-import { getFavoriteCount, getFilm, getFilmListMore, getAuthorizationStatus } from '../../store/selectors';
+import { getIsLoadingStatus, getFavoriteCount, getFilm, getFilmListMore, getAuthorizationStatus } from '../../store/selectors';
 import { changeFilmTab } from '../../store/film-data';
 import { fetchMoreFilmByID, fetchFilmByID, fetchReviewsByID, fetchFavoriteFilmsAction } from '../../store/api-actions';
 import FilmCardButtons from '../../components/film-card-buttons/film-card-buttons';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function MoviePageScreen(): JSX.Element {
   const id = Number(useParams().id);
@@ -17,6 +18,7 @@ function MoviePageScreen(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const filmListMore = useAppSelector(getFilmListMore);
   const favoriteCount = useAppSelector(getFavoriteCount);
+  const isLoadingStatus = useAppSelector(getIsLoadingStatus);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,6 +30,13 @@ function MoviePageScreen(): JSX.Element {
       dispatch(fetchFavoriteFilmsAction());
     }
   }, [id, authorizationStatus, dispatch]);
+
+  let countMoreFilm = filmListMore.length;
+  if (countMoreFilm > 4) { countMoreFilm = 4; }
+
+  if (isLoadingStatus) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -82,7 +91,7 @@ function MoviePageScreen(): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            { filmListMore.map((movie) => (<FilmCardComponent key={ movie.id } id={ movie.id } name={ movie.name } previewImage={ movie.previewImage } srcVideo={ movie.videoLink }/>)) }
+            { filmListMore.slice(0, countMoreFilm).map((movie) => (<FilmCardComponent key={ movie.id } id={ movie.id } name={ movie.name } previewImage={ movie.previewImage } srcVideo={ movie.videoLink }/>)) }
           </div>
         </section>
 

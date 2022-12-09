@@ -55,4 +55,22 @@ const getAllGenres = (filmsList: TypeFilm[]) => (
   [...new Set(['All genres', ...filmsList.map((film) => film.genre)])]
 );
 
-export { chooseRatingLevel, sortGenreFilm, reformatTime, convertTime, getAllGenres };
+const deleteFilm = (films: TypeFilm[], id: number | undefined) => {
+  const answer = films.filter((film) => (
+    film.id !== id
+  ));
+
+  return answer;
+};
+
+function convertTimeReview(time: string): string {
+  const date = new Date(time);
+
+  return (
+    `${date.toLocaleString(
+      'eng', { month: 'long' }) } ${ date.getDate() }, ${ date.getFullYear() }`
+  );
+}
+
+export { chooseRatingLevel, sortGenreFilm, reformatTime, convertTime,
+  getAllGenres, deleteFilm, convertTimeReview };
