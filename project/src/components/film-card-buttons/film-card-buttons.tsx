@@ -34,7 +34,7 @@ function FilmCardButtons({ film, favoriteType, favoriteCount, authStatus }: Film
   };
 
   return (
-    <div className="film-card__buttons">
+    <>
       <button
         className="btn btn--play film-card__button" type="button"
         onClick={ onClickPlay }
@@ -63,7 +63,7 @@ function FilmCardButtons({ film, favoriteType, favoriteCount, authStatus }: Film
           <span className="film-card__count">{ favoriteCount }</span>
         </button>
       }
-    </div>
+    </>
   );
 }
 

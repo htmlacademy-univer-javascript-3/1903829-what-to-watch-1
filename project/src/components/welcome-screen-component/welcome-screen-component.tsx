@@ -35,9 +35,11 @@ function WelcomeScreenComponent(): JSX.Element {
               <span className="film-card__year">{ film?.released.toString() }</span>
             </p>
 
-            <FilmCardButtons film={ film } favoriteType={ 'PROMO' }
-              favoriteCount={ favoriteCount } authStatus={ authStatus }
-            />
+            <div className="film-card__buttons">
+              <FilmCardButtons film={ film } favoriteType={ 'PROMO' }
+                favoriteCount={ favoriteCount } authStatus={ authStatus }
+              />
+            </div>
           </div>
         </div>
       </div>

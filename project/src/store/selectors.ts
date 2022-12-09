@@ -9,7 +9,7 @@ const getAvatarUrl = (state: State): string | null => state[NameSpace.User].avat
 const getUserId = (state: State): number | null => state[NameSpace.User].userId;
 
 const getFilms = (state: State): TypeFilm[] => state[NameSpace.WelcomeScreen].filmsList;
-const getFilm = (state: State): TypeFilm | null => state[NameSpace.WelcomeScreen].film;
+const getFilm = (state: State): TypeFilm | null => state[NameSpace.FilmScreen].film;
 const getFilteredFilms = (state: State): TypeFilm[] => state[NameSpace.WelcomeScreen].filmsListFiltered;
 const getCountCard = (state: State): number => state[NameSpace.WelcomeScreen].countShowCard;
 const getFavoriteCount = (state: State): number => state[NameSpace.WelcomeScreen].favoriteCount;

@@ -1,23 +1,17 @@
 import { useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import StatusFilm from '../../types/status';
 import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
 import TabsComponent from '../../components/tabs-component/tabs-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
 import FilmCardComponent from '../../components/film-card-component/film-card-component';
-import { getFavoriteCount, getFilm } from '../../store/selectors';
-import { getFilmListMore } from '../../store/selectors';
-import { getAuthorizationStatus } from '../../store/selectors';
-import { setDataLoadedStatus } from '../../store/list-data';
+import { getFavoriteCount, getFilm, getFilmListMore, getAuthorizationStatus } from '../../store/selectors';
 import { changeFilmTab } from '../../store/film-data';
-import { fetchFilmByID, fetchReviewsByID } from '../../store/api-actions';
-import { setFavoriteCount } from '../../store/list-data';
-import { changeFilmStatusToView } from '../../store/api-actions';
-import { fetchMoreFilmByID } from '../../store/api-actions';
+import { fetchMoreFilmByID, fetchFilmByID, fetchReviewsByID, fetchFavoriteFilmsAction } from '../../store/api-actions';
+import FilmCardButtons from '../../components/film-card-buttons/film-card-buttons';
 
-function MoviePage(): JSX.Element {
+function MoviePageScreen(): JSX.Element {
   const id = Number(useParams().id);
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -26,30 +20,14 @@ function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setDataLoadedStatus(true));
     dispatch(changeFilmTab('Overview'));
     dispatch(fetchFilmByID(id.toString()));
     dispatch(fetchReviewsByID(id.toString()));
-    dispatch(setDataLoadedStatus(false));
     dispatch(fetchMoreFilmByID(id.toString()));
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
   }, [id, authorizationStatus, dispatch]);
-
-  const onFavoriteClick = () => {
-    const filmStatus: StatusFilm = {
-      filmId: film?.id || NaN,
-      status: film?.isFavorite ? 0 : 1
-    };
-
-    dispatch(changeFilmStatusToView(filmStatus));
-
-    if (film?.isFavorite) { dispatch(setFavoriteCount(favoriteCount - 1)); }
-    else { dispatch(setFavoriteCount(favoriteCount + 1)); }
-  };
-
-  const navigate = useNavigate();
-  const onClickPlay = () => {
-    navigate(`/player/${ film?.id }`);
-  };
 
   return (
     <>
@@ -76,33 +54,13 @@ function MoviePage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={ onClickPlay }>
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                {
-                  authorizationStatus === AuthorizationStatus.Auth &&
-                  <button
-                    className="btn btn--list film-card__button"
-                    type="button"
-                    onClick={ onFavoriteClick }
-                  >
-                    {
-                      film?.isFavorite ? <span>✓</span> :
-                        <svg viewBox="0 0 19 20" width="19" height="20">
-                          <use xlinkHref="#add"></use>
-                        </svg>
-                    }
-                    <span>My list</span>
-                    <span className="film-card__count">{ favoriteCount }</span>
-                  </button>
-                }
+                <FilmCardButtons film={ film } favoriteType={ 'PROMO' }
+                  favoriteCount={ favoriteCount } authStatus={ authorizationStatus }
+                />
                 {
                   authorizationStatus === AuthorizationStatus.Auth &&
                   <Link
-                    to={`${AppRoute.Film}/${id}${AppRoute.AddReview}`}
+                    to={ `${ AppRoute.Film }/${ id }${ AppRoute.AddReview }` }
                     className="btn film-card__button"
                   >
                     Add review
@@ -140,4 +98,4 @@ function MoviePage(): JSX.Element {
   );
 }
 
-export default MoviePage;
+export default MoviePageScreen;

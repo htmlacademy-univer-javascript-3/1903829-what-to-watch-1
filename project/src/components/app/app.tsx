@@ -3,7 +3,7 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import SignIn from '../../pages/sign-in-screen/sign-in-screen';
 import MyList from '../../pages/my-list-screen/my-list-screen';
-import Film from '../../pages/movie-page-screen/movie-page-screen';
+import MoviePageScreen from '../../pages/movie-page-screen/movie-page-screen';
 import AddReview from '../../pages/add-review-screen/add-review-screen';
 import Player from '../../pages/player-screen/player-screen';
 import Error from '../error-component/error-component';
@@ -36,7 +36,7 @@ function App(): JSX.Element {
         }
         />
         <Route path={AppRoute.Film}>
-          <Route path={ ':id' } element={ <Film /> } />
+          <Route path={ ':id' } element={ <MoviePageScreen /> } />
         </Route>
         <Route
           path={ `/films/:id${ AppRoute.AddReview }` }

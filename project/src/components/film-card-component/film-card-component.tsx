@@ -20,10 +20,12 @@ function FilmCardComponent({ id, name, previewImage, srcVideo }: FilmCardTypePro
     <article className="small-film-card catalog__films-card"
       onMouseEnter={ () => setActiveCard(true) } onMouseLeave={ () => setActiveCard(false) }
     >
-      <div className="small-film-card__image">
-        { activeCard ? <VideoPlayerComponent src={ srcVideo } srcImage={ previewImage }/> :
-          <img src={ previewImage } alt={ name } width="280" height="175"/> }
-      </div>
+      <Link to={ `${ AppRoute.Film }/${ id }` } onClick={ () => { dispatch(resetMainScreen()); } }>
+        <div className="small-film-card__image">
+          { activeCard ? <VideoPlayerComponent src={ srcVideo } srcImage={ previewImage }/> :
+            <img src={ previewImage } alt={ name } width="280" height="175"/> }
+        </div>
+      </Link>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={ `${ AppRoute.Film }/${ id }` } onClick={ () => { dispatch(resetMainScreen()); } }>
           { name }
