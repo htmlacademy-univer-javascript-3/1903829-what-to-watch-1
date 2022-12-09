@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { CARDS_PER_STEP, NameSpace } from '../const';
 import InStateListData from '../types/list-data';
 import { sortGenreFilm } from '../utils/functions';
-import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, fetchOneFilmAction } from './api-actions';
+import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, changePromoStatusToView, fetchOneFilmAction } from './api-actions';
 
 const initialState: InStateListData = {
   genre: 'All genres',
@@ -69,7 +69,20 @@ export const mainData = createSlice({
         state.isDataLoaded = false;
       })
       .addCase(changeFilmStatusToView.fulfilled, (state, action) => {
+        if (action.payload.isFavorite) {
+          state.favoriteCount = state.favoriteCount + 1;
+        } else {
+          state.favoriteCount = state.favoriteCount - 1;
+        }
+      })
+      .addCase(changePromoStatusToView.fulfilled, (state, action) => {
         state.film = action.payload;
+
+        if (action.payload.isFavorite) {
+          state.favoriteCount = state.favoriteCount + 1;
+        } else {
+          state.favoriteCount = state.favoriteCount - 1;
+        }
       });
   }
 });

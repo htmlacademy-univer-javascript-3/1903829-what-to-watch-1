@@ -120,9 +120,19 @@ const changeFilmStatusToView = createAsyncThunk<TypeFilm, StatusFilm, {
   extra: AxiosInstance
 }>(
   'data/changeFilmStatusToView',
-  async ({filmId: id, status: isFavorite}, { extra: api }) => {
-    const { data } = await api.post<TypeFilm>(`${ APIRoute.Favorite }/${ id } /${ isFavorite }`);
-
+  async ({filmId: id, status: isFavorite}, { dispatch, extra: api}) => {
+    const { data } = await api.post<TypeFilm>(`${ APIRoute.Favorite }/${ id }/${ isFavorite }`);
+    return data;
+  },
+);
+const changePromoStatusToView = createAsyncThunk<TypeFilm, StatusFilm, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/changePromoStatusToView',
+  async ({filmId: id, status: isFavorite}, { dispatch, extra: api }) => {
+    const {data} = await api.post<TypeFilm>(`${ APIRoute.Favorite }/${ id }/${ isFavorite }`);
     return data;
   },
 );
@@ -172,4 +182,4 @@ const postComment = createAsyncThunk<void, UserComment, {
 );
 
 export { fetchFilmsAction, checkAuthAction, loginAction, logoutAction, clearErrorAction, fetchFavoriteFilmsAction,
-  fetchFilmByID, fetchReviewsByID, changeFilmStatusToView, fetchMoreFilmByID, postComment, };
+  fetchFilmByID, fetchReviewsByID, changeFilmStatusToView, changePromoStatusToView, fetchMoreFilmByID, postComment, };

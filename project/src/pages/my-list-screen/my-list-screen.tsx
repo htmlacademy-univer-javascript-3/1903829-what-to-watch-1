@@ -1,11 +1,22 @@
-import { useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
 import FilmCardFavouriteComponent from '../../components/favourite-film-card-component/favourite-film-card-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
-import { getFavoriteFilms } from '../../store/selectors';
+import { getFavoriteFilms, getAuthorizationStatus } from '../../store/selectors';
+import { AuthorizationStatus } from '../../const';
+import { fetchFavoriteFilmsAction } from '../../store/api-actions';
 
 function MyList(): JSX.Element {
   const favoriteFilm = useAppSelector(getFavoriteFilms);
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+  }, [authStatus, dispatch]);
 
   return (
     <div className="user-page">
