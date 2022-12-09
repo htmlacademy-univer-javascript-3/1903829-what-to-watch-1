@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CARDS_PER_STEP, NameSpace } from '../const';
 import InStateListData from '../types/list-data';
-import { SortGenreFilm } from '../utils/functions';
+import { sortGenreFilm } from '../utils/functions';
 import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, fetchOneFilmAction } from './api-actions';
 
 const initialState: InStateListData = {
@@ -20,7 +20,7 @@ export const mainData = createSlice({
   initialState,
   reducers: {
     changeGenreFilm: (state, action) => {
-      const filmsListFiltered = SortGenreFilm(state.filmsList, action.payload.genre);
+      const filmsListFiltered = sortGenreFilm(state.filmsList, action.payload.genre);
       state.genre = action.payload.genre;
       state.filmsListFiltered = filmsListFiltered;
       state.countShowCard = filmsListFiltered.length < CARDS_PER_STEP ? filmsListFiltered.length : CARDS_PER_STEP;
