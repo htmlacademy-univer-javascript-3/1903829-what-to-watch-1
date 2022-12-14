@@ -6,6 +6,8 @@ import SignOutComponent from '../../components/sign-out-component/sign-out-compo
 import { getFavoriteFilms, getAuthorizationStatus } from '../../store/selectors';
 import { AuthorizationStatus } from '../../const';
 import { fetchFavoriteFilmsAction } from '../../store/api-actions';
+import { getIsLoadingStatusMyList } from '../../store/selectors';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function MyList(): JSX.Element {
   const favoriteFilm = useAppSelector(getFavoriteFilms);
@@ -17,6 +19,11 @@ function MyList(): JSX.Element {
       dispatch(fetchFavoriteFilmsAction());
     }
   }, [authStatus, dispatch]);
+
+  const isDataLoading = useAppSelector(getIsLoadingStatusMyList);
+  if (isDataLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="user-page">

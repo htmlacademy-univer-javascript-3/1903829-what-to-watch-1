@@ -2,7 +2,24 @@ import './loading-screen.css';
 
 function LoadingScreen(): JSX.Element {
   return (
-    <p className="loading">Loading ...</p>
+    <div className="container">
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+      <div className="block"></div>
+    </div>
   );
 }
 
