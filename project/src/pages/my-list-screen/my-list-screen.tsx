@@ -1,11 +1,29 @@
-import { useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LogoComponent, LogoLightComponent } from '../../components/logo-component/logo-component';
-import FilmCardFavouriteComponent from '../../components/favourite-film-card-component/favourite-film-card-component';
+import FilmCardComponent from '../../components/film-card-component/film-card-component';
 import SignOutComponent from '../../components/sign-out-component/sign-out-component';
-import { getFavoriteFilms } from '../../store/selectors';
+import { getFavoriteFilms, getAuthorizationStatus } from '../../store/selectors';
+import { AuthorizationStatus } from '../../const';
+import { fetchFavoriteFilmsAction } from '../../store/api-actions';
+import { getIsLoadingStatusMyList } from '../../store/selectors';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function MyList(): JSX.Element {
   const favoriteFilm = useAppSelector(getFavoriteFilms);
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+  }, [authStatus, dispatch]);
+
+  const isDataLoading = useAppSelector(getIsLoadingStatusMyList);
+  if (isDataLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="user-page">
@@ -20,7 +38,8 @@ function MyList(): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          { favoriteFilm.map((film) => <FilmCardFavouriteComponent key={ film.id } id={ film.id } title={ film.name } previewImage={ film.previewImage }/>) }
+          { favoriteFilm.map((film) => (<FilmCardComponent key={ film.id } id={ film.id } name={ film.name } previewImage={ film.previewImage } srcVideo={ film?.videoLink }/>
+          )) }
         </div>
       </section>
 

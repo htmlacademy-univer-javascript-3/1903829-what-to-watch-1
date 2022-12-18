@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CARDS_PER_STEP, NameSpace } from '../const';
 import InStateListData from '../types/list-data';
-import { SortGenreFilm } from '../utils/functions';
-import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, fetchOneFilmAction } from './api-actions';
+import { sortGenreFilm } from '../utils/functions';
+import { fetchFavoriteFilmsAction, fetchFilmsAction, changeFilmStatusToView, changePromoStatusToView, fetchOneFilmAction } from './api-actions';
 
 const initialState: InStateListData = {
   genre: 'All genres',
@@ -20,7 +20,7 @@ export const mainData = createSlice({
   initialState,
   reducers: {
     changeGenreFilm: (state, action) => {
-      const filmsListFiltered = SortGenreFilm(state.filmsList, action.payload.genre);
+      const filmsListFiltered = sortGenreFilm(state.filmsList, action.payload.genre);
       state.genre = action.payload.genre;
       state.filmsListFiltered = filmsListFiltered;
       state.countShowCard = filmsListFiltered.length < CARDS_PER_STEP ? filmsListFiltered.length : CARDS_PER_STEP;
@@ -69,7 +69,20 @@ export const mainData = createSlice({
         state.isDataLoaded = false;
       })
       .addCase(changeFilmStatusToView.fulfilled, (state, action) => {
+        if (action.payload.isFavorite) {
+          state.favoriteCount = state.favoriteCount + 1;
+        } else {
+          state.favoriteCount = state.favoriteCount - 1;
+        }
+      })
+      .addCase(changePromoStatusToView.fulfilled, (state, action) => {
         state.film = action.payload;
+
+        if (action.payload.isFavorite) {
+          state.favoriteCount = state.favoriteCount + 1;
+        } else {
+          state.favoriteCount = state.favoriteCount - 1;
+        }
       });
   }
 });

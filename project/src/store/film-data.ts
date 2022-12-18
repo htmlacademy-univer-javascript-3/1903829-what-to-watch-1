@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../const';
 import FilmData from '../types/film-data';
 import { fetchFilmByID, fetchReviewsByID, changeFilmStatusToView, fetchMoreFilmByID } from './api-actions';
+import { deleteFilm } from '../utils/functions';
 
 const initialState: FilmData = {
   film: null,
@@ -34,7 +35,7 @@ export const filmData = createSlice({
         state.isLoaded = false;
       })
       .addCase(fetchMoreFilmByID.fulfilled, (state, action) => {
-        state.moreFilm = action.payload;
+        state.moreFilm = deleteFilm(action.payload, state.film?.id);
       })
       .addCase(fetchReviewsByID.fulfilled, (state, action) => {
         state.comments = action.payload;

@@ -9,19 +9,23 @@ const getAvatarUrl = (state: State): string | null => state[NameSpace.User].avat
 const getUserId = (state: State): number | null => state[NameSpace.User].userId;
 
 const getFilms = (state: State): TypeFilm[] => state[NameSpace.WelcomeScreen].filmsList;
-const getFilm = (state: State): TypeFilm | null => state[NameSpace.WelcomeScreen].film;
 const getFilteredFilms = (state: State): TypeFilm[] => state[NameSpace.WelcomeScreen].filmsListFiltered;
 const getCountCard = (state: State): number => state[NameSpace.WelcomeScreen].countShowCard;
 const getFavoriteCount = (state: State): number => state[NameSpace.WelcomeScreen].favoriteCount;
 const getFavoriteFilms = (state: State): TypeFilm[] => state[NameSpace.WelcomeScreen].favoriteListFilms;
+const getPromo = (state: State): TypeFilm | null => state[NameSpace.WelcomeScreen].film;
+const getIsLoadingStatusMyList = (state: State): boolean => state[NameSpace.WelcomeScreen].isDataLoaded;
 
 const getReviews = (state: State): Reviews => state[NameSpace.FilmScreen].comments;
 const getChooseTab = (state: State): string => state[NameSpace.FilmScreen].filmTab;
 const getFilmListMore = (state: State): TypeFilm[] => state[NameSpace.FilmScreen].moreFilm;
+const getIsLoadingStatus = (state: State): boolean | null => state[NameSpace.FilmScreen].isLoaded;
+const getFilm = (state: State): TypeFilm | null => state[NameSpace.FilmScreen].film;
 
 const getError = (state: State): string | null => state[NameSpace.App].error;
 
 export { getAuthorizationStatus, getAvatarUrl, getUserId,
   getFilms, getFilm, getFilteredFilms, getCountCard, getFavoriteCount, getFavoriteFilms,
-  getReviews, getChooseTab, getFilmListMore, getError,
+  getReviews, getChooseTab, getFilmListMore, getError, getIsLoadingStatus, getPromo,
+  getIsLoadingStatusMyList,
 };

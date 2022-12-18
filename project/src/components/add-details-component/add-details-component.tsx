@@ -1,13 +1,15 @@
+import { Fragment } from 'react';
 import { convertTime } from '../../utils/functions';
 
 type AddDetailsProps = {
   director?: string;
+  starring: string[];
   genre?: string;
   released?: number;
   runTime?: number;
 }
 
-function AddDetails({ director, genre, released, runTime }: AddDetailsProps): JSX.Element {
+function AddDetails({ director, starring, genre, released, runTime }: AddDetailsProps): JSX.Element {
   if (runTime !== undefined) {
     return (
       <div className="film-card__text film-card__row">
@@ -19,9 +21,7 @@ function AddDetails({ director, genre, released, runTime }: AddDetailsProps): JS
           <p className="film-card__details-item">
             <strong className="film-card__details-name">Starring</strong>
             <span className="film-card__details-value">
-              Tom Cruise
-              Dakota Fanning
-              Tim Robbins
+              { starring.map((star) => <Fragment key={ star }>{ star }<br /></Fragment>) }
             </span>
           </p>
         </div>

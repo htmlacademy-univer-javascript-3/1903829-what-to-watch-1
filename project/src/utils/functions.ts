@@ -1,6 +1,6 @@
 import TypeFilm from '../types/film-type';
 
-function ChooseRatingLevel(rating?: number): string {
+function chooseRatingLevel(rating?: number): string {
   if (rating !== undefined) {
     if (rating >= 0 && rating < 3) {
       return 'Bad';
@@ -17,7 +17,7 @@ function ChooseRatingLevel(rating?: number): string {
   return '';
 }
 
-function SortGenreFilm(filmsList: TypeFilm[], genre: string): TypeFilm[] {
+function sortGenreFilm(filmsList: TypeFilm[], genre: string): TypeFilm[] {
   if (genre === 'All genres') { return filmsList; }
   return filmsList.filter((film) => film.genre === genre);
 }
@@ -55,4 +55,22 @@ const getAllGenres = (filmsList: TypeFilm[]) => (
   [...new Set(['All genres', ...filmsList.map((film) => film.genre)])]
 );
 
-export { ChooseRatingLevel, SortGenreFilm, reformatTime, convertTime, getAllGenres };
+const deleteFilm = (films: TypeFilm[], id: number | undefined) => {
+  const answer = films.filter((film) => (
+    film.id !== id
+  ));
+
+  return answer;
+};
+
+function convertTimeReview(time: string): string {
+  const date = new Date(time);
+
+  return (
+    `${date.toLocaleString(
+      'eng', { month: 'long' }) } ${ date.getDate() }, ${ date.getFullYear() }`
+  );
+}
+
+export { chooseRatingLevel, sortGenreFilm, reformatTime, convertTime,
+  getAllGenres, deleteFilm, convertTimeReview };

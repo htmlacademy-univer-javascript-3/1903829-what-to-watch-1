@@ -17,7 +17,7 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-enum ApiRoute {
+enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
@@ -28,10 +28,10 @@ enum ApiRoute {
 }
 
 enum NameSpace {
-    User = 'USER',
-    WelcomeScreen = 'MAIN',
-    FilmScreen = 'FILM',
-    App = 'APP',
+  User = 'USER',
+  WelcomeScreen = 'MAIN',
+  FilmScreen = 'FILM',
+  App = 'APP',
 }
 
-export { AppRoute, AuthorizationStatus, ApiRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP, AUTH_TOKEN_KEY_NAME };
+export { AppRoute, AuthorizationStatus, APIRoute, NameSpace, TIMEOUT_SHOW_ERROR, CARDS_PER_STEP, AUTH_TOKEN_KEY_NAME };

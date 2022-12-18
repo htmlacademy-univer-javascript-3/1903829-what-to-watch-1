@@ -1,3 +1,5 @@
+import { convertTimeReview } from '../../utils/functions';
+
 type ReviewProps = {
   rating: number;
   name: string;
@@ -13,7 +15,9 @@ function ReviewComponent({ rating, name, date, comment }: ReviewProps): JSX.Elem
 
         <footer className="review__details">
           <cite className="review__author">{ name }</cite>
-          <time className="review__date" dateTime={ date }>{ date }</time>
+          <time className="review__date">
+            { convertTimeReview(date) }
+          </time>
         </footer>
       </blockquote>
 

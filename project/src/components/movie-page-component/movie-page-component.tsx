@@ -1,4 +1,4 @@
-import { ChooseRatingLevel } from '../../utils/functions';
+import { chooseRatingLevel } from '../../utils/functions';
 
 type MoviePageProps = {
   rating?: number;
@@ -14,7 +14,7 @@ function MoviePageComponent({ rating, description, scoresCount, director, starri
       <div className="film-rating">
         <div className="film-rating__score">{ rating }</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{ ChooseRatingLevel(rating) }</span>
+          <span className="film-rating__level">{ chooseRatingLevel(rating) }</span>
           <span className="film-rating__count">{ scoresCount } ratings</span>
         </p>
       </div>

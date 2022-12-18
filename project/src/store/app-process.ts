@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../const';
 
-const initialState: {error: string | null} = {
+const initialState: { error: string | null } = {
   error: null,
 };
 
