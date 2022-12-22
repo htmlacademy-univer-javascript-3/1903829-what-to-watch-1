@@ -29,7 +29,7 @@ function formatLeadZeros(num: number, maxLength: number) {
 }
 
 function reformatTime(filmDurationMin: number, currentPosSec: number) {
-  const nul = (n: number) => formatLeadZeros(n ,2);
+  const TIME = (n: number) => formatLeadZeros(n ,2);
   const floor = Math.floor;
   const durSec = filmDurationMin * 60;
   const leftSec = durSec - floor(currentPosSec);
@@ -37,7 +37,7 @@ function reformatTime(filmDurationMin: number, currentPosSec: number) {
   const minutes = floor(leftSec / 60) - hours * 60;
   const seconds = leftSec - minutes * 60 - hours * 3600;
   if (hours > 0) {
-    return `-${ nul(hours) }:${ nul(minutes) }:${ nul(seconds) }`;
+    return `-${ TIME(hours) }:${ TIME(minutes) }:${ TIME(seconds) }`;
   }
 }
 
