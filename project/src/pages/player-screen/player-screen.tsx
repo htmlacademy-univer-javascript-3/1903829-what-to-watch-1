@@ -16,18 +16,23 @@ function Player(): JSX.Element {
   const [time, setTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const isLoading = useAppSelector(getIsLoadingStatus);
+  const player = document.querySelector('.player') as HTMLDivElement;
 
-  const handleFullScreen = () => {
-    if (document.fullscreenElement) {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
+  const checkFullScreen = (): Element | null => (
+    document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement
+  );
+
+  const onFullScreenClick = (): void => {
+    if (checkFullScreen()) {
+      if (document.exitFullscreen) { document.exitFullscreen(); }
+      else if (document.msExitFullscreen) { document.msExitFullscreen(); }
+      else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
+      else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
     } else {
-      if (playerRef?.current) {
-        if (playerRef?.current.requestFullscreen) {
-          playerRef?.current.requestFullscreen();
-        }
-      }
+      if (player.requestFullscreen) { player.requestFullscreen(); }
+      else if (player.msRequestFullscreen) { player.msRequestFullscreen(); }
+      else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
+      else if (player.mozRequestFullScreen) { player.mozRequestFullScreen(); }
     }
   };
 
@@ -102,7 +107,7 @@ function Player(): JSX.Element {
 
           <div className="player__name">{ film?.name }</div>
 
-          <button type="button" className="player__full-screen" onClick={ handleFullScreen }>
+          <button type="button" className="player__full-screen" onClick={ () => onFullScreenClick() }>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
